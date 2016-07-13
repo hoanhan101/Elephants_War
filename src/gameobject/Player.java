@@ -20,22 +20,6 @@ public class Player {
     public static final int TYPE_PLAYER_1 = 1;
     public static final int TYPE_PLAYER_2 = 2;
 
-    public int getPosY() {
-        return posY;
-    }
-
-    public void setPosY(int posX) {
-        this.posY = posX;
-    }
-
-    public BufferedImage getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(BufferedImage sprite) {
-        this.sprite = sprite;
-    }
-
     public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
     public static final String PLAYER_OLDMAN = "Resource/Char/2OldMan.png";
 
@@ -110,5 +94,20 @@ public class Player {
                 cursorElephant.remove();
 
         }
+    }
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posX) {
+        this.posY = posX;
+    }
+
+    public BufferedImage getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(BufferedImage sprite) {
+        this.sprite = sprite;
     }
 }

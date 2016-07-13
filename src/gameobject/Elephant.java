@@ -14,6 +14,7 @@ import java.io.IOException;
 public class Elephant {
     public static final int TYPE_ELEPHANT_1 = 1;
     public static final int TYPE_ELEPHANT_2 = 2;
+    
     public static final String ELEPHANT_BIG_1 = "Resource/Char/1Boss.png";
     public static final String ELEPHANT_BIG_2 = "Resource/Char/2Boss.png";
 
