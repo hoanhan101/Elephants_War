@@ -24,8 +24,7 @@ public class Elephant {
 
     public int posY;
 
-
-
+    private Animation animation;
     private BufferedImage sprite;
     private int posX;
     private int speed;
@@ -42,6 +41,7 @@ public class Elephant {
             case TYPE_ELEPHANT_1:
                 try {
                     sprite = ImageIO.read(new File(ELEPHANT_BIG));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
