@@ -51,7 +51,7 @@ public class Player {
 
     public void call(){
         int x = random.nextInt(3);
-        listElephant.add(new Elephant(0,x+1,5));
+        listElephant.add(new Elephant(0,x+1,7));
     }
 
     public void draw(Graphics g){
@@ -72,7 +72,7 @@ public class Player {
             Elephant elephant = cursorElephant.next();
             elephant.moveByVector();
             int x = elephant.getPosX();
-            if(x > 500)
+            if(x > 600)
                 cursorElephant.remove();
 
         }

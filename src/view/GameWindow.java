@@ -87,13 +87,17 @@ public class GameWindow extends Frame implements Runnable{
     private void eventKeyType(KeyEvent e) {
         switch (e.getKeyChar()){
             case 'd':
-                playerGril.call();
-                break;
+                if(count_Space >= 100) {
+                    playerGril.call();
+                    count_Space = 0;
+                }
+            break;
             default: break;
         }
     }
 
     public void gameUpdate(){
+        count_Space++;
         playerGril.update();
     }
 
@@ -102,7 +106,7 @@ public class GameWindow extends Frame implements Runnable{
             gameUpdate();
             repaint();
             try {
-                Thread.sleep(17);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
