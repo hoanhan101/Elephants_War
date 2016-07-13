@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * Created by HP on 7/13/2016.
@@ -19,6 +20,7 @@ public class Animation {
     int time;
     int count_time = 0;
     int index;
+    int count = 0;
     BufferedImage subImage;
 
     public Animation(int type,int number_image,int time){
@@ -56,10 +58,35 @@ public class Animation {
                     e.printStackTrace();
                 }
             }
+            if(type == 4) {
+                try {
+                    subImage = ImageIO.read(new File("Resource/Char/Boss/Boss " + (i + 1) + ".png"));
+                    frames.add(subImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(type == 5) {
+                try {
+                    subImage = ImageIO.read(new File("Resource/Char/Blue/Blue " + (i + 1) + ".png"));
+                    frames.add(subImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(type == 6) {
+                try {
+                    subImage = ImageIO.read(new File("Resource/Char/Angry/Angry " + (i + 1) + ".png"));
+                    frames.add(subImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     public void update(){
         count_time += 20;
+        count ++;
         if(count_time > this.time){
             count_time = 0;
             if(index == frames.size() - 1){

@@ -12,8 +12,8 @@ public class PlayerGirl extends Player {
 
     Random random = new Random();
 
-    public PlayerGirl(int posX, int type) {
-        super(posX, type);
+    public PlayerGirl(int posX,int posY, int type) {
+        super(posX,posY,type);
     }
 
     @Override

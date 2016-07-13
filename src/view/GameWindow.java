@@ -2,6 +2,7 @@ package view;
 
 import gameobject.Player;
 import gameobject.PlayerGirl;
+import gameobject.PlayerOldMan;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -17,17 +18,20 @@ import java.io.IOException;
  * Created by hoanhan on 7/13/16.
  */
 public class GameWindow extends Frame implements Runnable{
-    public static final int windowHeight = 480;
-    public static final int windowWidth = 640;
-    public static int positionWay_Y = 350;
+    public static final int windowHeight = 750;
+    public static final int windowWidth = 1000;
+    public static int Way_1 = 250;
     public static final String Background = "Resource/Background/Background.jpg";
 
 
     Player playerGril ;
+    Player playerOldMan;
+
     BufferedImage background;
     BufferedImage buffImage ;
 
-    int count_Space = 100;
+    int count_Space_1 = 50;
+    int count_Space_2 = 50;
 
     public GameWindow(){
         initWindow();
@@ -42,7 +46,8 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     private void initPlayer() {
-        playerGril = new PlayerGirl(positionWay_Y - 75,Player.TYPE_PLAYER_1);
+        playerGril = new PlayerGirl(0,Way_1 - 75,Player.TYPE_PLAYER_1);
+        playerOldMan = new PlayerOldMan(900,Way_1 - 75,Player.TYPE_PLAYER_2);
     }
 
     private void initLoadImage() {
@@ -74,7 +79,7 @@ public class GameWindow extends Frame implements Runnable{
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                eventKeyCode(e);
             }
 
             @Override
@@ -84,12 +89,22 @@ public class GameWindow extends Frame implements Runnable{
         });
     }
 
+    private void eventKeyCode(KeyEvent e) {
+        switch (e.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+                if(count_Space_1 >= 50){
+                    playerOldMan.call();
+                    count_Space_1 = 0;
+                }
+        }
+    }
+
     private void eventKeyType(KeyEvent e) {
         switch (e.getKeyChar()){
             case 'd':
-                if(count_Space >= 100) {
+                if(count_Space_2 >= 50) {
                     playerGril.call();
-                    count_Space = 0;
+                    count_Space_2 = 0;
                 }
             break;
             default: break;
@@ -97,8 +112,11 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     public void gameUpdate(){
-        count_Space++;
+        count_Space_1++;
+        count_Space_2++;
+
         playerGril.update();
+        playerOldMan.update();
     }
 
     public void gameLoop(){
@@ -121,7 +139,9 @@ public class GameWindow extends Frame implements Runnable{
         }
         Graphics bufferGraphic = buffImage.getGraphics();
         bufferGraphic.drawImage(background,0,0,null);
+
         playerGril.draw(bufferGraphic);
+        playerOldMan.draw(bufferGraphic);
 
         g.drawImage(buffImage,0,0,null);
     }

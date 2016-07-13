@@ -18,10 +18,15 @@ public class Elephant {
     public static final int TYPE_ELEPHANT_1 = 1;
     public static final int TYPE_ELEPHANT_2 = 2;
     public static final int TYPE_ELEPHANT_3 = 3;
+    public static final int TYPE_ELEPHANT_4 = 4;
+    public static final int TYPE_ELEPHANT_5 = 5;
+    public static final int TYPE_ELEPHANT_6 = 6;
 
     public static final String ELEPHANT_BIG = "Resource/Char/1Boss.png";
     public static final String ELEPHANT_SMALL = "Resource/Char/1Blue.png";
     public static final String ELEPHANT_MID = "Resource/Char/1Angry.png";
+
+    public static int Way_1 = 250;
 
     public int posY;
 
@@ -40,39 +45,38 @@ public class Elephant {
     private void loadSpriteByType(int type) {
         switch (type) {
             case TYPE_ELEPHANT_1:
-                try {
-                    sprite = ImageIO.read(new File(ELEPHANT_BIG));
-                    animation = new Animation(1,20,31);
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-                posY = getHeightSprite();
+                loadAnimation(1,ELEPHANT_BIG);
                 break;
-           case TYPE_ELEPHANT_2:
-                try {
-                    sprite = ImageIO.read(new File(ELEPHANT_SMALL));
-                    animation = new Animation(2,20,31);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                posY = getHeightSprite();
+            case TYPE_ELEPHANT_2:
+                loadAnimation(2,ELEPHANT_SMALL);
                 break;
             case TYPE_ELEPHANT_3:
-                try {
-                    sprite = ImageIO.read(new File(ELEPHANT_MID));
-                    animation = new Animation(3,20,31);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                posY = getHeightSprite();
+                loadAnimation(3,ELEPHANT_MID);
                 break;
-
+            case TYPE_ELEPHANT_4:
+                loadAnimation(4,ELEPHANT_BIG);
+                break;
+            case TYPE_ELEPHANT_5:
+                loadAnimation(5,ELEPHANT_SMALL);
+                break;
+            case TYPE_ELEPHANT_6:
+                loadAnimation(6,ELEPHANT_MID);
+                break;
         }
     }
 
+    private void loadAnimation(int x,String str){
+        try {
+            sprite = ImageIO.read(new File(str));
+            animation = new Animation(x,20,31);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        posY = getHeightSprite();
+    }
+
     private int getHeightSprite(){
-        return 350 - sprite.getHeight();
+        return Way_1 - sprite.getHeight();
     }
 
 
@@ -86,15 +90,8 @@ public class Elephant {
 
     void update(){
         moveByVector();
-        try {
             animation.update();
-        }catch (Exception e){
 
-        }
-//        Iterator<BufferedImage> cursorImage = animation.frames.iterator();
-//        while (cursorImage.hasNext()){
-//            if(posX > 100000000) cursorImage.remove();
-//        }
     }
 
     public void draw(Graphics g){

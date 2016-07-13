@@ -21,15 +21,20 @@ public class Player {
     public static final String PLAYER_OLDMAN = "Resource/Char/2OldMan.png";
 
     private BufferedImage sprite;
+    private int posX;
     private int posY;
+
+
     public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
 
     Random random = new Random();
 
-    public Player(int posY, int type){
+    public Player(int posX,int posY, int type){
+        this.posX = posX;
         this.posY = posY;
         loadSpriteByType(type);
     }
+
 
     private void loadSpriteByType(int type) {
         switch (type) {
@@ -43,7 +48,7 @@ public class Player {
                 break;
             case TYPE_PLAYER_2 :
                 try {
-                    sprite = ImageIO.read(new File(PLAYER_GIRL));
+                    sprite = ImageIO.read(new File(PLAYER_OLDMAN));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -56,7 +61,7 @@ public class Player {
     }
 
     public void draw(Graphics g){
-        g.drawImage(sprite,0, posY,null);
+        g.drawImage(sprite,posX, posY,null);
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while(cursorElephant.hasNext()){
             try {
@@ -66,21 +71,21 @@ public class Player {
             }
         }
     }
-
     public void update (){
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while (cursorElephant.hasNext()){
             Elephant elephant = cursorElephant.next();
             elephant.update();
-            if(elephant.getPosX() > 600) cursorElephant.remove();
+            if(elephant.getPosX() > 1100) cursorElephant.remove();
+            if(elephant.getPosX() < -100) cursorElephant.remove();
         }
     }
     public int getPosY() {
         return posY;
     }
 
-    public void setPosY(int posX) {
-        this.posY = posX;
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
     public BufferedImage getSprite() {
@@ -90,4 +95,12 @@ public class Player {
     public void setSprite(BufferedImage sprite) {
         this.sprite = sprite;
     }
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
 }
