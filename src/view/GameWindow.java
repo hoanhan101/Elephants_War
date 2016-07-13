@@ -29,7 +29,12 @@ public class GameWindow extends Frame implements Runnable{
         initWindow();
         initLoadImage();
         initPlayer();
+        initCursor();
         repaint();
+    }
+
+    private void initCursor() {
+        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "cursor"));
     }
 
     private void initPlayer() {

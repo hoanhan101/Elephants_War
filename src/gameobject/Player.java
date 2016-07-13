@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -91,7 +92,11 @@ public class Player {
         g.drawImage(sprite,0, posY,null);
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while(cursorElephant.hasNext()){
-            cursorElephant.next().draw(g);
+            try {
+                cursorElephant.next().draw(g);
+            }catch (ConcurrentModificationException e){
+
+            }
         }
     }
 

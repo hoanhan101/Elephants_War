@@ -19,6 +19,6 @@ public class PlayerGirl extends Player {
     @Override
     public void call() {
         int x = random.nextInt(2);
-        listElephant.add(new Elephant(0,x,1));
+        listElephant.add(new Elephant(0,x+1,1));
     }
 }
