@@ -9,6 +9,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * Created by hoanhan on 7/13/16.
@@ -41,16 +42,17 @@ public class Elephant {
             case TYPE_ELEPHANT_1:
                 try {
                     sprite = ImageIO.read(new File(ELEPHANT_BIG));
-
-                } catch (IOException e) {
+                    animation = new Animation(1,20,31);
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 posY = getHeightSprite();
                 break;
            case TYPE_ELEPHANT_2:
                 try {
                     sprite = ImageIO.read(new File(ELEPHANT_SMALL));
+                    animation = new Animation(2,20,31);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -59,6 +61,7 @@ public class Elephant {
             case TYPE_ELEPHANT_3:
                 try {
                     sprite = ImageIO.read(new File(ELEPHANT_MID));
+                    animation = new Animation(3,20,31);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -72,12 +75,7 @@ public class Elephant {
         return 350 - sprite.getHeight();
     }
 
-    private void flipImage(){
-        AffineTransform tx = AffineTransform.getScaleInstance(-1,1);
-        tx.translate(-sprite.getWidth(null),0);
-        AffineTransformOp op = new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        sprite = op.filter(sprite,null);
-    }
+
     private void position(int x) {
         posX = x;
     }
@@ -88,10 +86,19 @@ public class Elephant {
 
     void update(){
         moveByVector();
+        try {
+            animation.update();
+        }catch (Exception e){
+
+        }
+//        Iterator<BufferedImage> cursorImage = animation.frames.iterator();
+//        while (cursorImage.hasNext()){
+//            if(posX > 100000000) cursorImage.remove();
+//        }
     }
 
     public void draw(Graphics g){
-        g.drawImage(sprite,posX,posY,null);
+        animation.draw(g,posX,posY);
     }
 
 

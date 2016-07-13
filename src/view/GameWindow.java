@@ -27,7 +27,7 @@ public class GameWindow extends Frame implements Runnable{
     BufferedImage background;
     BufferedImage buffImage ;
 
-    int count_Space;
+    int count_Space = 100;
 
     public GameWindow(){
         initWindow();

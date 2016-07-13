@@ -36,6 +36,7 @@ public class Player {
             case TYPE_PLAYER_1:
                 try {
                     sprite = ImageIO.read(new File(PLAYER_GIRL));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -70,11 +71,8 @@ public class Player {
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while (cursorElephant.hasNext()){
             Elephant elephant = cursorElephant.next();
-            elephant.moveByVector();
-            int x = elephant.getPosX();
-            if(x > 600)
-                cursorElephant.remove();
-
+            elephant.update();
+            if(elephant.getPosX() > 600) cursorElephant.remove();
         }
     }
     public int getPosY() {
