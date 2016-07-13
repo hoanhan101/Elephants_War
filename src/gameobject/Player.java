@@ -1,11 +1,13 @@
 package gameobject;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -62,5 +64,17 @@ public class Player {
                 listElephant.add(new Elephant(x,m));
             }else listElephant.add(new Elephant(x,m));
         }
+    }
+
+    public void draw(Graphics g){
+        g.drawImage(sprite,posX,450,null);
+        Iterator<Elephant> cursorElephant = listElephant.iterator();
+        while(cursorElephant.hasNext()){
+            cursorElephant.next().draw(g);
+        }
+    }
+
+    public void update (){
+
     }
 }

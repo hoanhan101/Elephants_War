@@ -1,6 +1,7 @@
 package gameobject;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +58,9 @@ public class Elephant {
         moveByVector(x);
     }
 
+    public void draw(Graphics g){
+        g.drawImage(sprite,posX,450,null);
+    }
 
 
     public int getPosX() {
