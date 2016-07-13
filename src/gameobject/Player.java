@@ -1,10 +1,7 @@
 package gameobject;
 
-import view.GameWindow;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +23,7 @@ public class Player {
     private BufferedImage sprite;
     private int posY;
     public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
+
     Random random = new Random();
 
     public Player(int posY, int type){
@@ -52,22 +50,6 @@ public class Player {
     }
 
     public void call(){
-//        if(number_player == 1){
-//            int n = random.nextInt(6);
-//            int m = n + 1;
-//            if(m%2 == 0) {
-//                m -= 1;
-//                listElephant.add(new Elephant(x,m));
-//            }else listElephant.add(new Elephant(x,m));
-//        }
-//        if(number_player == 2){
-//            int n = random.nextInt(6);
-//            int m = n + 1;
-//            if(m%2 != 0) {
-//                m += 1;
-//                listElephant.add(new Elephant(x,m));
-//            }else listElephant.add(new Elephant(x,m));
-//        }
         int x = random.nextInt(3);
         listElephant.add(new Elephant(0,x+1,5));
     }
@@ -90,7 +72,7 @@ public class Player {
             Elephant elephant = cursorElephant.next();
             elephant.moveByVector();
             int x = elephant.getPosX();
-            if(x > 480)
+            if(x > 500)
                 cursorElephant.remove();
 
         }

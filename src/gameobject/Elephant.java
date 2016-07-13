@@ -4,6 +4,8 @@ import view.GameWindow;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,16 +16,22 @@ import java.io.IOException;
 public class Elephant {
     public static final int TYPE_ELEPHANT_1 = 1;
     public static final int TYPE_ELEPHANT_2 = 2;
-    
-    public static final String ELEPHANT_BIG_1 = "Resource/Char/1Boss.png";
-    public static final String ELEPHANT_BIG_2 = "Resource/Char/2Boss.png";
+    public static final int TYPE_ELEPHANT_3 = 3;
+
+    public static final String ELEPHANT_BIG = "Resource/Char/1Boss.png";
+    public static final String ELEPHANT_SMALL = "Resource/Char/1Blue.png";
+    public static final String ELEPHANT_MID = "Resource/Char/1Angry.png";
+
+    public int posY;
+
+
 
     private BufferedImage sprite;
     private int posX;
     private int speed;
     private int strength;
 
-    public Elephant(int posX, int type,int speed) {
+    public Elephant(int posX,int type,int speed) {
         this.speed = speed;
         this.posX = posX;
         loadSpriteByType(type);
@@ -31,24 +39,45 @@ public class Elephant {
 
     private void loadSpriteByType(int type) {
         switch (type) {
-            case 1:
+            case TYPE_ELEPHANT_1:
                 try {
-                    sprite = ImageIO.read(new File(ELEPHANT_BIG_1));
+                    sprite = ImageIO.read(new File(ELEPHANT_BIG));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+                posY = getHeightSprite();
                 break;
-            case 2:
+           case TYPE_ELEPHANT_2:
                 try {
-                    sprite = ImageIO.read(new File(ELEPHANT_BIG_2));
+                    sprite = ImageIO.read(new File(ELEPHANT_SMALL));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                posY = getHeightSprite();
                 break;
+            case TYPE_ELEPHANT_3:
+                try {
+                    sprite = ImageIO.read(new File(ELEPHANT_MID));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                posY = getHeightSprite();
+                break;
+
         }
     }
 
+    private int getHeightSprite(){
+        return 350 - sprite.getHeight();
+    }
 
+    private void flipImage(){
+        AffineTransform tx = AffineTransform.getScaleInstance(-1,1);
+        tx.translate(-sprite.getWidth(null),0);
+        AffineTransformOp op = new AffineTransformOp(tx,AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        sprite = op.filter(sprite,null);
+    }
     private void position(int x) {
         posX = x;
     }
@@ -62,7 +91,7 @@ public class Elephant {
     }
 
     public void draw(Graphics g){
-        g.drawImage(sprite,posX, GameWindow.windowHeight/2,null);
+        g.drawImage(sprite,posX,posY,null);
     }
 
 

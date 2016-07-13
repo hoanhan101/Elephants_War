@@ -19,11 +19,15 @@ import java.io.IOException;
 public class GameWindow extends Frame implements Runnable{
     public static final int windowHeight = 480;
     public static final int windowWidth = 640;
+    public static int positionWay_Y = 350;
     public static final String Background = "Resource/Background/Background.jpg";
+
 
     Player playerGril ;
     BufferedImage background;
     BufferedImage buffImage ;
+
+    int count_Space;
 
     public GameWindow(){
         initWindow();
@@ -38,7 +42,7 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     private void initPlayer() {
-        playerGril = new PlayerGirl(windowHeight/2,Player.TYPE_PLAYER_1);
+        playerGril = new PlayerGirl(positionWay_Y - 75,Player.TYPE_PLAYER_1);
     }
 
     private void initLoadImage() {
