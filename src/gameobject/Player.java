@@ -60,8 +60,6 @@ public class Player {
     }
 
     public void call(){
-        int x = random.nextInt(3);
-        listElephant.add(new Elephant(0,x+1,0));
     }
 
     public void draw(Graphics g){
@@ -71,7 +69,7 @@ public class Player {
         while(cursorElephant.hasNext()){
             try {
                 cursorElephant.next().draw(g);
-            }catch (ConcurrentModificationException e){
+            }catch (Exception e){
 
             }
         }

@@ -20,7 +20,12 @@ public class PlayerGirl extends Player {
     @Override
     public void call() {
         int x = random.nextInt(3);
-        listElephant.add(new Elephant(0,x+1,SPEED_GTRL));
+        if(x == 0)
+            listElephant.add(new ElephantBlue(0,1,SPEED_GTRL));
+        if(x == 1)
+            listElephant.add(new ElephantAngry(0,2,SPEED_GTRL));
+        if(x == 2)
+            listElephant.add(new ElephantBoss1(0,3,SPEED_GTRL));
     }
 
 

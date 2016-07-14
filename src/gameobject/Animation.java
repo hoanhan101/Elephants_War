@@ -16,15 +16,6 @@ import java.util.Vector;
  */
 public class Animation {
 
-    public  String PNG = ".png";
-    public  String BOSS_GIRL = "Resource/Char/Boss/Boss " ;
-    public  String MID_GIRL = "Resource/Char/Angry/Angry " ;
-    public  String SMALL_GIRL = "Resource/Char/Blue/Blue " ;
-    public  String BOSS_OLD = "Resource/Char/Boss/Boss " ;
-    public  String MID_OLD = "Resource/Char/Angry/Angry " ;
-    public  String SMALL_OLD = "Resource/Char/Blue/Blue " ;
-
-
     ArrayList<BufferedImage> frames = new ArrayList<>();
 
     private int time;
@@ -35,45 +26,24 @@ public class Animation {
     private int strength;
     private BufferedImage subImage;
 
-    public Animation(int type,int number_image,int time){
+    public Animation(int type,int time){
         this.time = time;
-        doAnimation(type,number_image);
+        doAnimation(type);
     }
-    private void doAnimation(int type,int number_image){
-        for(int i = 0; i < number_image; i++){
-            if(type == 1) {
-                getAnimation(SMALL_GIRL,PNG,i+1,1);
-            }
-            if(type == 2) {
-                getAnimation(MID_GIRL,PNG,i+1,2);
-            }
-            if(type == 3) {
-                getAnimation(BOSS_GIRL,PNG,i+1,3);
-            }
-            if(type == 4) {
-                getAnimation(SMALL_OLD,PNG,i+1,4);
-            }
-            if(type == 5) {
-                getAnimation(MID_OLD,PNG,i+1,5);
-            }
-            if(type == 6) {
-                getAnimation(BOSS_OLD,PNG,i+1,6);
-            }
-        }
+    protected void doAnimation(int type){
     }
 
-    private void getAnimation(String str1,String str2,int n,int m) {
-        if (m <= 3){
+    public void getAnimation(String str1,String str2,int n,int m) {
+        if (m < 10){
             try {
                 subImage = ImageIO.read(new File(str1+n+str2));
                 flipImage();
                 frames.add(subImage);
 
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
-        if (m > 3){
+        if (m > 10){
             try {
                 subImage = ImageIO.read(new File(str1+n+str2));
                 frames.add(subImage);

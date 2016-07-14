@@ -1,9 +1,8 @@
 package view;
 
-import gameobject.Elephant;
 import gameobject.Player;
 import gameobject.PlayerGirl;
-import gameobject.PlayerOldMan;
+import gameobject.PlayerOld;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -29,7 +28,7 @@ public class GameWindow extends Frame implements Runnable{
 
 
     Player playerGril ;
-    Player playerOldMan;
+    Player playerOld;
 
     BufferedImage background;
     BufferedImage buffImage ;
@@ -51,7 +50,7 @@ public class GameWindow extends Frame implements Runnable{
 
     private void initPlayer() {
         playerGril = new PlayerGirl(0,Way_1 - playerHeight,Player.TYPE_PLAYER_1);
-        playerOldMan = new PlayerOldMan(900,Way_1 - playerHeight,Player.TYPE_PLAYER_2);
+        playerOld = new PlayerOld(900,Way_1 - playerHeight,Player.TYPE_PLAYER_2);
     }
 
     private void initLoadImage() {
@@ -97,7 +96,7 @@ public class GameWindow extends Frame implements Runnable{
         switch (e.getKeyCode()){
             case KeyEvent.VK_LEFT:
                 if(count_Space_1 >= count_space){
-                    playerOldMan.call();
+                    playerOld.call();
                     count_Space_1 = 0;
                 }
         }
@@ -120,10 +119,10 @@ public class GameWindow extends Frame implements Runnable{
         count_Space_2++;
 
         playerGril.update(1);
-        playerOldMan.update(2);
+        playerOld.update(2);
 
-        if(playerGril.listElephant.size() > 0 && playerOldMan.listElephant.size() > 0)
-            playerGril.checkCollision(playerOldMan);
+        if(playerGril.listElephant.size() > 0 && playerOld.listElephant.size() > 0)
+            playerGril.checkCollision(playerOld);
 
     }
 
@@ -149,7 +148,7 @@ public class GameWindow extends Frame implements Runnable{
         bufferGraphic.drawImage(background,0,0,null);
 
         playerGril.draw(bufferGraphic);
-        playerOldMan.draw(bufferGraphic);
+        playerOld.draw(bufferGraphic);
 
         g.drawImage(buffImage,0,0,null);
     }
