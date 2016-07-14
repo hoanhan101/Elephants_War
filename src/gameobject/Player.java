@@ -20,10 +20,14 @@ public class Player {
     public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
     public static final String PLAYER_OLDMAN = "Resource/Char/2OldMan.png";
 
+    private static final int SPEED_UPDATE_GIRL = -1;
+    private static final int SPEED_UPDATE_OLDMAN = 1;
+
     private BufferedImage sprite;
     private int posX;
     private int posY;
-
+    static int sumElephantGirl;
+    static int sumElephantMan;
 
     public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
 
@@ -57,11 +61,12 @@ public class Player {
 
     public void call(){
         int x = random.nextInt(3);
-        listElephant.add(new Elephant(0,x+1,7));
+        listElephant.add(new Elephant(0,x+1,0));
     }
 
     public void draw(Graphics g){
         g.drawImage(sprite,posX, posY,null);
+
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while(cursorElephant.hasNext()){
             try {
@@ -71,13 +76,21 @@ public class Player {
             }
         }
     }
-    public void update (){
+    public void update (int x){
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while (cursorElephant.hasNext()){
             Elephant elephant = cursorElephant.next();
             elephant.update();
-            if(elephant.getPosX() > 1100) cursorElephant.remove();
-            if(elephant.getPosX() < -100) cursorElephant.remove();
+            if(elephant.getPosX() > 900){
+                if(x == 1)sumElephantGirl -= elephant.getStrength();
+                if(x == 2)sumElephantMan -= elephant.getStrength();
+                cursorElephant.remove();
+            }
+            if(elephant.getPosX() < 0){
+                cursorElephant.remove();
+                if(x == 1)sumElephantGirl -= elephant.getStrength();
+                if(x == 2)sumElephantMan -= elephant.getStrength();
+            }
         }
     }
     public int getPosY() {
@@ -103,4 +116,47 @@ public class Player {
         this.posX = posX;
     }
 
+    public int checkType(int x){
+        if(x == 1 || x == 4) return 300;
+        if(x == 2 || x == 5) return 100;
+        if(x == 3 || x == 6) return 200;
+        return 0;
+    }
+
+    public void checkCollision(Player player){
+        for(int i = 0 ; i < listElephant.size() ; i++) {
+            for (int j = 0; j < player.listElephant.size() ; j++) {
+                try {
+                    if (listElephant.get(i).animation.getRectangle().intersects(player.listElephant.get(j).animation.getRectangle())) {
+                        if (listElephant.get(i).hasCollision == false)
+                            sumElephantGirl += listElephant.get(i).getStrength();
+                        if (player.listElephant.get(j).hasCollision == false)
+                            sumElephantMan += player.listElephant.get(j).getStrength();
+
+                        listElephant.get(i).hasCollision = true;
+                        player.listElephant.get(j).hasCollision = true;
+
+                        if (sumElephantGirl < sumElephantMan) {
+                            changeSpeedCollision(SPEED_UPDATE_GIRL,player);
+                        }
+                        if (sumElephantMan < sumElephantGirl) {
+                            changeSpeedCollision(SPEED_UPDATE_OLDMAN,player);
+                        }
+                        if (sumElephantMan == sumElephantGirl) {
+                           changeSpeedCollision(0,player);
+                        }
+                    }
+
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    private void changeSpeedCollision(int x,Player player){
+        for(int k = 0; k < listElephant.size(); k++)
+            if(listElephant.get(k).hasCollision) listElephant.get(k).setSpeed(x);
+        for(int k = 0; k < player.listElephant.size(); k++)
+            if(player.listElephant.get(k).hasCollision) player.listElephant.get(k).setSpeed(x);
+    }
 }

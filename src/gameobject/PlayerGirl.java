@@ -8,7 +8,8 @@ import java.util.Random;
 /**
  * Created by hoanhan on 7/13/16.
  */
-public class PlayerGirl extends Player {
+public class PlayerGirl extends Player implements CallElephant{
+    final int SPEED_GTRL = 1;
 
     Random random = new Random();
 
@@ -19,6 +20,8 @@ public class PlayerGirl extends Player {
     @Override
     public void call() {
         int x = random.nextInt(3);
-        listElephant.add(new Elephant(0,x+1,1));
+        listElephant.add(new Elephant(0,x+1,SPEED_GTRL));
     }
+
+
 }

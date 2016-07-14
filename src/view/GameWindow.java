@@ -1,5 +1,6 @@
 package view;
 
+import gameobject.Elephant;
 import gameobject.Player;
 import gameobject.PlayerGirl;
 import gameobject.PlayerOldMan;
@@ -115,8 +116,12 @@ public class GameWindow extends Frame implements Runnable{
         count_Space_1++;
         count_Space_2++;
 
-        playerGril.update();
-        playerOldMan.update();
+        playerGril.update(1);
+        playerOldMan.update(2);
+
+        if(playerGril.listElephant.size() > 0 && playerOldMan.listElephant.size() > 0)
+            playerGril.checkCollision(playerOldMan);
+
     }
 
     public void gameLoop(){

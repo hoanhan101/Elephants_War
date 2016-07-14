@@ -30,49 +30,59 @@ public class Elephant {
 
     public int posY;
 
-    private Animation animation;
+    public Animation animation;
     private BufferedImage sprite;
     private int posX;
     private int speed;
     private int strength;
+    public int type;
+    boolean hasCollision = false;
 
     public Elephant(int posX,int type,int speed) {
         this.speed = speed;
         this.posX = posX;
         loadSpriteByType(type);
+        this.type = type;
     }
 
     private void loadSpriteByType(int type) {
         switch (type) {
             case TYPE_ELEPHANT_1:
-                loadAnimation(1,ELEPHANT_BIG);
+                loadAnimation(1,ELEPHANT_BIG,300);
                 break;
             case TYPE_ELEPHANT_2:
-                loadAnimation(2,ELEPHANT_SMALL);
+                loadAnimation(2,ELEPHANT_SMALL,100);
                 break;
             case TYPE_ELEPHANT_3:
-                loadAnimation(3,ELEPHANT_MID);
+                loadAnimation(3,ELEPHANT_MID,200);
                 break;
             case TYPE_ELEPHANT_4:
-                loadAnimation(4,ELEPHANT_BIG);
+                loadAnimation(4,ELEPHANT_BIG,300);
                 break;
             case TYPE_ELEPHANT_5:
-                loadAnimation(5,ELEPHANT_SMALL);
+                loadAnimation(5,ELEPHANT_SMALL,100);
                 break;
             case TYPE_ELEPHANT_6:
-                loadAnimation(6,ELEPHANT_MID);
+                loadAnimation(6,ELEPHANT_MID,200);
                 break;
         }
     }
 
-    private void loadAnimation(int x,String str){
+    private void loadAnimation(int x,String str,int strength){
         try {
             sprite = ImageIO.read(new File(str));
             animation = new Animation(x,20,31);
+            this.strength = strength;
         } catch (IOException e) {
             e.printStackTrace();
         }
         posY = getHeightSprite();
+    }
+
+    private void getPosXAnimation(){
+        animation.posX = this.posX ;
+        animation.posY = this.posY ;
+        animation.strength = this.strength;
     }
 
     private int getHeightSprite(){
@@ -90,8 +100,8 @@ public class Elephant {
 
     void update(){
         moveByVector();
-            animation.update();
-
+        animation.update();
+        getPosXAnimation();
     }
 
     public void draw(Graphics g){
