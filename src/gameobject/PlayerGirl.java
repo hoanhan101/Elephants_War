@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Created by hoanhan on 7/13/16.
  */
-public class PlayerGirl extends Player implements CallElephant{
+public class PlayerGirl extends Player {
     final int SPEED_GTRL = 1;
 
     Random random = new Random();

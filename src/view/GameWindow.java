@@ -21,8 +21,11 @@ import java.io.IOException;
 public class GameWindow extends Frame implements Runnable{
     public static final int windowHeight = 750;
     public static final int windowWidth = 1000;
+    public static final int playerHeight = 75;
     public static int Way_1 = 250;
     public static final String Background = "Resource/Background/Background.jpg";
+    public static final int count_space = 50;
+    public static final int count_repeat = 20;
 
 
     Player playerGril ;
@@ -47,8 +50,8 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     private void initPlayer() {
-        playerGril = new PlayerGirl(0,Way_1 - 75,Player.TYPE_PLAYER_1);
-        playerOldMan = new PlayerOldMan(900,Way_1 - 75,Player.TYPE_PLAYER_2);
+        playerGril = new PlayerGirl(0,Way_1 - playerHeight,Player.TYPE_PLAYER_1);
+        playerOldMan = new PlayerOldMan(900,Way_1 - playerHeight,Player.TYPE_PLAYER_2);
     }
 
     private void initLoadImage() {
@@ -93,7 +96,7 @@ public class GameWindow extends Frame implements Runnable{
     private void eventKeyCode(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_LEFT:
-                if(count_Space_1 >= 50){
+                if(count_Space_1 >= count_space){
                     playerOldMan.call();
                     count_Space_1 = 0;
                 }
@@ -103,7 +106,7 @@ public class GameWindow extends Frame implements Runnable{
     private void eventKeyType(KeyEvent e) {
         switch (e.getKeyChar()){
             case 'd':
-                if(count_Space_2 >= 50) {
+                if(count_Space_2 >= count_space) {
                     playerGril.call();
                     count_Space_2 = 0;
                 }
@@ -129,7 +132,7 @@ public class GameWindow extends Frame implements Runnable{
             gameUpdate();
             repaint();
             try {
-                Thread.sleep(20);
+                Thread.sleep(count_repeat);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

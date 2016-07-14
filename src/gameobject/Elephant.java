@@ -23,47 +23,52 @@ public class Elephant {
     public static final int TYPE_ELEPHANT_6 = 6;
 
     public static final String ELEPHANT_BIG = "Resource/Char/1Boss.png";
-    public static final String ELEPHANT_SMALL = "Resource/Char/1Blue.png";
     public static final String ELEPHANT_MID = "Resource/Char/1Angry.png";
+    public static final String ELEPHANT_SMALL = "Resource/Char/1Blue.png";
 
     public static int Way_1 = 250;
 
-    public int posY;
+    public static final int HP_ELEPHANT_1 = 100;
+    public static final int HP_ELEPHANT_2 = 200;
+    public static final int HP_ELEPHANT_3 = 300;
 
+    public int posY;
+    public int type;
     public Animation animation;
+
     private BufferedImage sprite;
     private int posX;
     private int speed;
     private int strength;
-    public int type;
+
     boolean hasCollision = false;
 
     public Elephant(int posX,int type,int speed) {
         this.speed = speed;
         this.posX = posX;
-        loadSpriteByType(type);
         this.type = type;
+        loadSpriteByType(type);
     }
 
     private void loadSpriteByType(int type) {
         switch (type) {
             case TYPE_ELEPHANT_1:
-                loadAnimation(1,ELEPHANT_BIG,300);
+                loadAnimation(1,ELEPHANT_SMALL,HP_ELEPHANT_1);
                 break;
             case TYPE_ELEPHANT_2:
-                loadAnimation(2,ELEPHANT_SMALL,100);
+                loadAnimation(2,ELEPHANT_MID,HP_ELEPHANT_2);
                 break;
             case TYPE_ELEPHANT_3:
-                loadAnimation(3,ELEPHANT_MID,200);
+                loadAnimation(3,ELEPHANT_BIG,HP_ELEPHANT_3);
                 break;
             case TYPE_ELEPHANT_4:
-                loadAnimation(4,ELEPHANT_BIG,300);
+                loadAnimation(4,ELEPHANT_SMALL,HP_ELEPHANT_1);
                 break;
             case TYPE_ELEPHANT_5:
-                loadAnimation(5,ELEPHANT_SMALL,100);
+                loadAnimation(5,ELEPHANT_MID,HP_ELEPHANT_2);
                 break;
             case TYPE_ELEPHANT_6:
-                loadAnimation(6,ELEPHANT_MID,200);
+                loadAnimation(6,ELEPHANT_BIG,HP_ELEPHANT_3);
                 break;
         }
     }
@@ -80,9 +85,9 @@ public class Elephant {
     }
 
     private void getPosXAnimation(){
-        animation.posX = this.posX ;
-        animation.posY = this.posY ;
-        animation.strength = this.strength;
+        animation.setPosX(this.posX);
+        animation.setPosY(this.posY);
+        animation.setStrength(this.strength);
     }
 
     private int getHeightSprite(){

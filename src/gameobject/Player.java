@@ -26,8 +26,8 @@ public class Player {
     private BufferedImage sprite;
     private int posX;
     private int posY;
-    static int sumElephantGirl;
-    static int sumElephantMan;
+    private static int sumElephantGirl ;
+    private static int sumElephantMan ;
 
     public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
 
@@ -82,47 +82,26 @@ public class Player {
             Elephant elephant = cursorElephant.next();
             elephant.update();
             if(elephant.getPosX() > 900){
-                if(x == 1)sumElephantGirl -= elephant.getStrength();
-                if(x == 2)sumElephantMan -= elephant.getStrength();
+                changeSumPlayer(x,elephant);
                 cursorElephant.remove();
             }
             if(elephant.getPosX() < 0){
+                changeSumPlayer(x,elephant);
                 cursorElephant.remove();
-                if(x == 1)sumElephantGirl -= elephant.getStrength();
-                if(x == 2)sumElephantMan -= elephant.getStrength();
             }
         }
     }
-    public int getPosY() {
-        return posY;
-    }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
+    private void changeSumPlayer(int x,Elephant elephant){
+        if(x == 1) {
+            sumElephantGirl -= elephant.getStrength();
+            if (sumElephantGirl < 0) sumElephantGirl = 0;
+        }
+        if(x == 2) {
+            sumElephantMan -= elephant.getStrength();
+            if (sumElephantMan < 0) sumElephantMan = 0;
+        }
     }
-
-    public BufferedImage getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(BufferedImage sprite) {
-        this.sprite = sprite;
-    }
-    public int getPosX() {
-        return posX;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int checkType(int x){
-        if(x == 1 || x == 4) return 300;
-        if(x == 2 || x == 5) return 100;
-        if(x == 3 || x == 6) return 200;
-        return 0;
-    }
-
     public void checkCollision(Player player){
         for(int i = 0 ; i < listElephant.size() ; i++) {
             for (int j = 0; j < player.listElephant.size() ; j++) {
@@ -143,10 +122,9 @@ public class Player {
                             changeSpeedCollision(SPEED_UPDATE_OLDMAN,player);
                         }
                         if (sumElephantMan == sumElephantGirl) {
-                           changeSpeedCollision(0,player);
+                            changeSpeedCollision(0,player);
                         }
                     }
-
                 } catch (Exception e) {
                 }
             }
@@ -158,5 +136,42 @@ public class Player {
             if(listElephant.get(k).hasCollision) listElephant.get(k).setSpeed(x);
         for(int k = 0; k < player.listElephant.size(); k++)
             if(player.listElephant.get(k).hasCollision) player.listElephant.get(k).setSpeed(x);
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+    public BufferedImage getSprite() {
+        return sprite;
+    }
+    public void setSprite(BufferedImage sprite) {
+        this.sprite = sprite;
+    }
+    public int getPosX() {
+        return posX;
+    }
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+    public int checkType(int x){
+        if(x == 1 || x == 4) return 300;
+        if(x == 2 || x == 5) return 100;
+        if(x == 3 || x == 6) return 200;
+        return 0;
+    }
+    public int getSumElephantGirl() {
+        return sumElephantGirl;
+    }
+    public void setSumElephantGirl(int sumElephantGirl) {
+        this.sumElephantGirl = sumElephantGirl;
+    }
+    public int getSumElephantMan() {
+        return sumElephantMan;
+    }
+    public void setSumElephantMan(int sumElephantMan) {
+        this.sumElephantMan = sumElephantMan;
     }
 }

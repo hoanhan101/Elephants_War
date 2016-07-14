@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Created by hoanhan on 7/13/16.
  */
-public class PlayerOldMan extends Player implements CallElephant{
+public class PlayerOldMan extends Player {
 
     final int SPEED_OLDMAN = -1;
 
