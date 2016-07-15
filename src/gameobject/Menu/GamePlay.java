@@ -19,20 +19,17 @@ public class GamePlay extends Screen {
     public static final String BUTTON_BACK = "Resource/Char101/Button/ButtonBack.png";
     public static final int playerHeight1 = 75;
     public static final int playerHeight2 = 80;
-    public static final int count_keyWord = 50;
-    public static int Way_1 = 250;
+    public static final int count_keyWord = 100;
     public static final int POSITION_BACK_X= 50;
     public static final int POSITION_BACK_Y= 620;
-
     BufferedImage background;
     BufferedImage buttonBack;
-
 
     Player playerGril ;
     Player playerOld;
 
-    int count_keyWord_1 = 50;
-    int count_keyWord_2 = 50;
+    int count_keyWord_1 = 100;
+    int count_keyWord_2 = 100;
 
     public GamePlay(){
         initPlayer();
@@ -52,6 +49,14 @@ public class GamePlay extends Screen {
                     count_keyWord_2 = 0;
                 }
                 break;
+//            case 's':
+//                ManagerWay.getInstance().setWay(500);
+//                initPlayer();
+//                break;
+//            case 'w':
+//                ManagerWay.getInstance().setWay(250);
+//                initPlayer();
+//                break;
         }
     }
 
@@ -64,17 +69,19 @@ public class GamePlay extends Screen {
 
     @Override
     public void update() {
+
         count_keyWord_1++;
         count_keyWord_2++;
         playerGril.update(1);
         playerOld.update(2);
         if(playerGril.listElephant.size() > 0 && playerOld.listElephant.size() > 0)
             playerGril.checkCollision(playerOld);
+
     }
 
     private void initPlayer() {
-        playerGril = new PlayerGirl(0,Way_1 - playerHeight1,PlayerGirl.TYPE_PLAYER_GIRL);
-        playerOld = new PlayerOld(900,Way_1 - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
+        playerGril = new PlayerGirl(0,ManagerWay.getInstance().getWay() - playerHeight1,PlayerGirl.TYPE_PLAYER_GIRL);
+        playerOld = new PlayerOld(900,ManagerWay.getInstance().getWay() - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
     }
 
     public Rectangle getRectangleButton(int x,int y,BufferedImage image){

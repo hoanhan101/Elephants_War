@@ -1,19 +1,20 @@
 package gameobject.Elephants;
 
 import gameobject.Animations.*;
+import gameobject.Menu.ManagerWay;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by hoanhan on 7/13/16.
  */
 public class Elephant {
-
-    public static int Way_1 = 250;
 
     public int posY;
     public int type;
@@ -23,6 +24,8 @@ public class Elephant {
     private int posX;
     private int speed;
     private int strength;
+
+    public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
 
     public boolean hasCollision = false;
 
@@ -83,7 +86,7 @@ public class Elephant {
     }
 
     private int getHeightSprite(){
-        return Way_1 - sprite.getHeight();
+        return ManagerWay.getInstance().getWay() - sprite.getHeight();
     }
 
     public void  moveByVector() {
@@ -98,6 +101,10 @@ public class Elephant {
 
     public void draw(Graphics g){
         animation.draw(g,posX,posY);
+        Iterator<Elephant> cursorElephant = listElephant.iterator();
+        while(cursorElephant.hasNext()){
+            cursorElephant.next().draw(g);
+        }
     }
 
 

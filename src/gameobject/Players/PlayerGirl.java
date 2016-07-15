@@ -13,6 +13,7 @@ import java.util.Random;
 public class PlayerGirl extends Player {
     public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
     public static final int TYPE_PLAYER_GIRL = 1;
+    public static final int WAY_1 = 250;
 
     final int SPEED_GTRL = 1;
 

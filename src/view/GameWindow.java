@@ -1,9 +1,6 @@
 package view;
 
-import gameobject.Menu.FirstBackground;
-import gameobject.Menu.GamePlay;
-import gameobject.Menu.ManagerMenu;
-import gameobject.Menu.Mouse;
+import gameobject.Menu.*;
 import gameobject.Players.Player;
 import gameobject.Players.PlayerGirl;
 import gameobject.Players.PlayerOld;
@@ -48,6 +45,7 @@ public class GameWindow extends Frame implements Runnable{
         this.setSize(windowWidth,windowHeight);
         this.setVisible(true);
         ManagerMenu.getInstance().getStackScreen().push(new FirstBackground());
+        ManagerWay.getInstance().setWay(250);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
