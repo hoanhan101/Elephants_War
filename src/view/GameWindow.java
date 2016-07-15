@@ -80,7 +80,7 @@ public class GameWindow extends Frame implements Runnable{
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                eventKeyCode(e);
             }
 
             @Override
@@ -89,6 +89,13 @@ public class GameWindow extends Frame implements Runnable{
             }
         });
     }
+
+    private void eventKeyCode(KeyEvent e) {
+        if((ManagerMenu.getInstance().getStackScreen().peek()) instanceof GamePlay) {
+            ((GamePlay) ManagerMenu.getInstance().getStackScreen().peek()).initPlay2(e.getKeyCode());
+        }
+    }
+
     public void checkCollision(Mouse mouse){
         collision = ManagerMenu.getInstance().getStackScreen().peek().Collision(mouse);
         if(collision == 1) mouse.setHasCollision(true);

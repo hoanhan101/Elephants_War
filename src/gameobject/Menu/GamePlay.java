@@ -3,6 +3,7 @@ package gameobject.Menu;
 import gameobject.Players.Player;
 import gameobject.Players.PlayerGirl;
 import gameobject.Players.PlayerOld;
+import javafx.scene.input.KeyCode;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -37,12 +38,6 @@ public class GamePlay extends Screen {
 
     public void initPlay(char keyChar) {
         switch (keyChar){
-            case 'p':
-                if(count_keyWord_1 >= count_keyWord){
-                    playerOld.call();
-                    count_keyWord_1 = 0;
-                }
-                break;
             case 'd':
                 if(count_keyWord_2 >= count_keyWord) {
                     playerGril.call();
@@ -51,11 +46,11 @@ public class GamePlay extends Screen {
                 break;
 //            case 's':
 //                ManagerWay.getInstance().setWay(500);
-//                initPlayer();
+//                playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
 //                break;
 //            case 'w':
 //                ManagerWay.getInstance().setWay(250);
-//                initPlayer();
+//                playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
 //                break;
         }
     }
@@ -112,5 +107,16 @@ public class GamePlay extends Screen {
             g.drawImage(buttonBack,POSITION_BACK_X,POSITION_BACK_Y,null);
             playerGril.draw(g);
             playerOld.draw(g);
+    }
+
+    public void initPlay2(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.VK_LEFT:
+                if (count_keyWord_1 >= count_keyWord) {
+                    playerOld.call();
+                    count_keyWord_1 = 0;
+                }
+                break;
+        }
     }
 }

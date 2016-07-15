@@ -2,6 +2,7 @@ package gameobject.Elephants;
 
 import gameobject.Animations.*;
 import gameobject.Menu.ManagerWay;
+import gameobject.Players.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,8 +26,6 @@ public class Elephant {
     private int speed;
     private int strength;
 
-    public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
-
     public boolean hasCollision = false;
 
     public Elephant(int posX,int type,int speed) {
@@ -48,7 +47,7 @@ public class Elephant {
             e.printStackTrace();
         }
         addAnimation(x);
-            this.strength = strength;
+        this.strength = strength;
 
         posY = getHeightSprite();
     }
@@ -85,7 +84,7 @@ public class Elephant {
             animation = new AnimationPink(x,31);
     }
 
-    private int getHeightSprite(){
+    public int getHeightSprite(){
         return ManagerWay.getInstance().getWay() - sprite.getHeight();
     }
 
@@ -101,13 +100,7 @@ public class Elephant {
 
     public void draw(Graphics g){
         animation.draw(g,posX,posY);
-        Iterator<Elephant> cursorElephant = listElephant.iterator();
-        while(cursorElephant.hasNext()){
-            cursorElephant.next().draw(g);
-        }
     }
-
-
     public int getPosX() {
         return posX;
     }
