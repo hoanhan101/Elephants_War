@@ -28,9 +28,10 @@ public class Elephant {
 
     public boolean hasCollision = false;
 
-    public Elephant(int posX,int type,int speed) {
+    public Elephant(int posY,int posX,int type,int speed) {
         this.speed = speed;
         this.posX = posX;
+        this.posY = posY;
         this.type = type;
         loadSpriteByType(type);
     }
@@ -49,7 +50,7 @@ public class Elephant {
         addAnimation(x);
         this.strength = strength;
 
-        posY = getHeightSprite();
+    //    posY = getHeightSprite();
     }
 
     private void getPosXAnimation(){

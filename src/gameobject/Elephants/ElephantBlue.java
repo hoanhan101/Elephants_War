@@ -10,8 +10,8 @@ public class ElephantBlue extends Elephant {
     private static final int TYPE_11 = 11;
     public static final int STRENGTH_ELEPHANT_1 = 400;
 
-    public ElephantBlue(int posX, int type, int speed) {
-        super(posX, type, speed);
+    public ElephantBlue(int posY,int posX, int type, int speed) {
+        super(posY,posX, type, speed);
     }
 
     @Override

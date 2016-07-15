@@ -44,14 +44,18 @@ public class GamePlay extends Screen {
                     count_keyWord_2 = 0;
                 }
                 break;
-//            case 's':
-//                ManagerWay.getInstance().setWay(500);
-//                playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
-//                break;
-//            case 'w':
-//                ManagerWay.getInstance().setWay(250);
-//                playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
-//                break;
+            case 's':
+                if(ManagerWay.getInstance().getWay() <= 500) {
+                    ManagerWay.getInstance().setWay(ManagerWay.getInstance().getWay() + 100);
+                    playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
+                }
+                break;
+            case 'w':
+                if(ManagerWay.getInstance().getWay() >= 300) {
+                    ManagerWay.getInstance().setWay(ManagerWay.getInstance().getWay() - 100);
+                    playerGril.setPosY(ManagerWay.getInstance().getWay() - playerHeight1);
+                }
+                break;
         }
     }
 
@@ -76,7 +80,7 @@ public class GamePlay extends Screen {
 
     private void initPlayer() {
         playerGril = new PlayerGirl(0,ManagerWay.getInstance().getWay() - playerHeight1,PlayerGirl.TYPE_PLAYER_GIRL);
-        playerOld = new PlayerOld(900,ManagerWay.getInstance().getWay() - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
+        playerOld = new PlayerOld(900,ManagerWay2.getInstance().getWay() - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
     }
 
     public Rectangle getRectangleButton(int x,int y,BufferedImage image){
@@ -115,6 +119,18 @@ public class GamePlay extends Screen {
                 if (count_keyWord_1 >= count_keyWord) {
                     playerOld.call();
                     count_keyWord_1 = 0;
+                }
+                break;
+            case KeyEvent.VK_DOWN:
+                if(ManagerWay2.getInstance().getWay() <= 500) {
+                    ManagerWay2.getInstance().setWay(ManagerWay2.getInstance().getWay() + 100);
+                    playerOld.setPosY(ManagerWay2.getInstance().getWay() - playerHeight1);
+                }
+                break;
+            case KeyEvent.VK_UP:
+                if(ManagerWay2.getInstance().getWay() >= 300) {
+                    ManagerWay2.getInstance().setWay(ManagerWay2.getInstance().getWay() - 100);
+                    playerOld.setPosY(ManagerWay2.getInstance().getWay() - playerHeight1);
                 }
                 break;
         }

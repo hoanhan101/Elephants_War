@@ -41,7 +41,7 @@ public class Instruction2 extends Screen {
                     return 0;
                 }
             }catch (Exception e){
-                
+
             }
 
             return 0;
