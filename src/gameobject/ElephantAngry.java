@@ -12,7 +12,6 @@ public class ElephantAngry extends Elephant {
 
     public ElephantAngry(int posX, int type, int speed) {
         super(posX, type, speed);
-        loadSpriteByType(type);
     }
 
     @Override

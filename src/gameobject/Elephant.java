@@ -16,7 +16,7 @@ public class Elephant {
     public int posY;
     public int type;
     public Animation animation;
-
+    private int check_Collision = 0;
     private BufferedImage sprite;
     private int posX;
     private int speed;
@@ -49,6 +49,11 @@ public class Elephant {
         animation.setPosX(this.posX);
         animation.setPosY(this.posY);
         animation.setStrength(this.strength);
+        if(check_Collision == 0 && hasCollision) {
+            animation.setHasCollision(this.hasCollision);
+            check_Collision++;
+        }
+        animation.setType(this.type);
     }
 
     private void addAnimation(int x){

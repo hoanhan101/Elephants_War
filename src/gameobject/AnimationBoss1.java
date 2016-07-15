@@ -4,8 +4,8 @@ package gameobject;
  * Created by HP on 7/14/2016.
  */
 public class AnimationBoss1 extends Animation {
-    public  static final String BOSS_GIRL = "Resource/Char/Boss/Boss " ;
-    public  static final String BOSS_OLD = "Resource/Char/Boss/Boss " ;
+    public  static final String BOSS_GIRL = "Resource/Char101/Boss1 20/Boss1 " ;
+    public  static final String BOSS_OLD = "Resource/Char101/Boss1 20/Boss1 " ;
     public  static final String PNG = ".png";
 
     public AnimationBoss1(int type, int time) {

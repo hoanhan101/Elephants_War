@@ -49,8 +49,8 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     private void initPlayer() {
-        playerGril = new PlayerGirl(0,Way_1 - playerHeight,Player.TYPE_PLAYER_1);
-        playerOld = new PlayerOld(900,Way_1 - playerHeight,Player.TYPE_PLAYER_2);
+        playerGril = new PlayerGirl(0,Way_1 - playerHeight,PlayerGirl.TYPE_PLAYER_GIRL);
+        playerOld = new PlayerOld(900,Way_1 - playerHeight,PlayerOld.TYPE_PLAYER_OLD);
     }
 
     private void initLoadImage() {

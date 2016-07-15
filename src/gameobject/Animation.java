@@ -23,16 +23,20 @@ public class Animation {
     private int index;
     private int posX;
     private int posY;
+    public boolean hasCollision;
     private int strength;
+    private int type;
     private BufferedImage subImage;
 
     public Animation(int type,int time){
         this.time = time;
         doAnimation(type);
     }
-    protected void doAnimation(int type){
+    public void doAnimation(int type){
     }
+    public void doPushAnimation(int type){
 
+    }
     public void getAnimation(String str1,String str2,int n,int m) {
         if (m < 10){
             try {
@@ -67,6 +71,11 @@ public class Animation {
                 index++;
             }
         }
+        if(hasCollision){
+            doPushAnimation(type);
+            hasCollision = false;
+        }
+
     }
 
     public void draw (Graphics g,int posX,int posY){
@@ -134,5 +143,21 @@ public class Animation {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public boolean isHasCollision() {
+        return hasCollision;
+    }
+
+    public void setHasCollision(boolean hasCollision) {
+        this.hasCollision = hasCollision;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

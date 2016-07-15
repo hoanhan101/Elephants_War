@@ -14,11 +14,6 @@ import java.util.Random;
  * Created by hoanhan on 7/13/16.
  */
 public class Player {
-    public static final int TYPE_PLAYER_1 = 1;
-    public static final int TYPE_PLAYER_2 = 2;
-
-    public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
-    public static final String PLAYER_OLDMAN = "Resource/Char/2OldMan.png";
 
     private static final int SPEED_UPDATE_GIRL = -1;
     private static final int SPEED_UPDATE_OLDMAN = 1;
@@ -31,8 +26,6 @@ public class Player {
 
     public ArrayList<Elephant> listElephant = new ArrayList<Elephant>();
 
-    Random random = new Random();
-
     public Player(int posX,int posY, int type){
         this.posX = posX;
         this.posY = posY;
@@ -40,23 +33,8 @@ public class Player {
     }
 
 
-    private void loadSpriteByType(int type) {
-        switch (type) {
-            case TYPE_PLAYER_1:
-                try {
-                    sprite = ImageIO.read(new File(PLAYER_GIRL));
+    public void loadSpriteByType(int type) {
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case TYPE_PLAYER_2 :
-                try {
-                    sprite = ImageIO.read(new File(PLAYER_OLDMAN));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-        }
     }
 
     public void call(){
