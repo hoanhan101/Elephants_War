@@ -5,10 +5,10 @@ package gameobject.Elephants;
  */
 public class ElephantAngry extends Elephant {
 
-    public static final String ANGRY = "Resource/Char/1Angry.png";
+    public static final String ANGRY = "Resource/Char101/Angry 10/Angry 1.png";
     public static final int TYPE_2 = 2;
     public static final int TYPE_12 = 12;
-    public static final int STRENGTH_ELEPHANT_2 = 200;
+    public static final int STRENGTH_ELEPHANT_2 = 800;
 
     public ElephantAngry(int posX, int type, int speed) {
         super(posX, type, speed);

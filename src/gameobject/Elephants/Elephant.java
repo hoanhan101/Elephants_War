@@ -1,9 +1,6 @@
 package gameobject.Elephants;
 
-import gameobject.Animations.Animation;
-import gameobject.Animations.AnimationAngry;
-import gameobject.Animations.AnimationBlue;
-import gameobject.Animations.AnimationBoss1;
+import gameobject.Animations.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,7 +17,7 @@ public class Elephant {
 
     public int posY;
     public int type;
-    public Animation animation;
+    public Animation animation = new Animation();
     private int check_Collision = 0;
     private BufferedImage sprite;
     private int posX;
@@ -69,6 +66,18 @@ public class Elephant {
             animation = new AnimationAngry(x,31);
         if(x == 3 || x == 13)
             animation = new AnimationBoss1(x,31);
+        if(x == 4 || x == 14)
+            animation = new AnimationBoss2(x,31);
+        if(x == 5 || x == 15)
+            animation = new AnimationBrown(x,31);
+        if(x == 6 || x == 16)
+            animation = new AnimationStupid(x,31);
+        if(x == 7 || x == 17)
+            animation = new AnimationBigBrown(x,31);
+        if(x == 8 || x == 18)
+            animation = new AnimationGreen(x,31);
+        if(x == 9 || x == 19)
+            animation = new AnimationPink(x,31);
     }
 
     private int getHeightSprite(){

@@ -6,6 +6,8 @@ package gameobject.Animations;
 public class AnimationAngry extends Animation {
     public  static final String ANGRY_GIRL = "Resource/Char101/Angry 10/Angry " ;
     public  static final String ANGRY_OLD = "Resource/Char101/Angry 10/Angry " ;
+    public  static final String ANGRY_PUSH_GIRL = "Resource/Char101/AngryPush 16/AngryPush " ;
+    public  static final String ANGRY_PUSH_OLD = "Resource/Char101/AngryPush 16/AngryPush " ;
     public  static final String PNG = ".png";
 
     public AnimationAngry(int type, int time) {
@@ -21,6 +23,18 @@ public class AnimationAngry extends Animation {
             if(type == 12) {
                 getAnimation(ANGRY_OLD,PNG,i+1,12);
             }
+        }
+    }
+
+    public void doPushAnimation(int type){
+        for(int i = 0; i < 16; i++){
+            if (type == 2) {
+                getAnimation(ANGRY_PUSH_GIRL,PNG, i + 1, 2);
+            }
+            if (type == 12) {
+                getAnimation(ANGRY_PUSH_OLD,PNG, i + 1, 12);
+            }
+
         }
     }
 }

@@ -13,8 +13,6 @@ public class AnimationBlue extends Animation {
     public  static final String BLUE_PUSH_OLD = "Resource/Char101/BluePush 30/BluePush " ;
     public  static final String PNG = ".png";
 
-    ArrayList<BufferedImage> framePush = new ArrayList<>();
-
     public AnimationBlue(int type, int time) {
         super(type, time);
     }

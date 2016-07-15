@@ -5,10 +5,10 @@ package gameobject.Elephants;
  */
 public class ElephantBoss1 extends Elephant {
 
+    public static final String BOSS_1 = "Resource/Char101/Boss1 20/Boss1 1.png";
     private static final int TYPE_3 = 3;
     private static final int TYPE_13 = 13;
-    private static final String BOSS_1 = "Resource/Char/1Boss.png";
-    public static final int STRENGTH_ELEPHANT_3 = 300;
+    public static final int STRENGTH_ELEPHANT_3 = 1100;
     public ElephantBoss1(int posX, int type, int speed) {
         super(posX, type, speed);
     }

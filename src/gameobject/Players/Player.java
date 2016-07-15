@@ -48,7 +48,9 @@ public class Player {
     public void update (int x){
         Iterator<Elephant> cursorElephant = listElephant.iterator();
         while (cursorElephant.hasNext()){
-            Elephant elephant = cursorElephant.next();
+            try {
+                Elephant elephant = cursorElephant.next();
+
             elephant.update();
             if(elephant.getPosX() > 900){
                 changeSumPlayer(x,elephant);
@@ -57,6 +59,9 @@ public class Player {
             if(elephant.getPosX() < 0){
                 changeSumPlayer(x,elephant);
                 cursorElephant.remove();
+            }
+            }catch (Exception e){
+
             }
         }
     }

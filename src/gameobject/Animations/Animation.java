@@ -29,6 +29,10 @@ public class Animation {
         this.time = time;
         doAnimation(type);
     }
+
+    public Animation(){
+
+    }
     public void doAnimation(int type){
     }
     public void doPushAnimation(int type){
