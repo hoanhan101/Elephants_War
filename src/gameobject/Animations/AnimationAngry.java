@@ -27,6 +27,7 @@ public class AnimationAngry extends Animation {
     }
 
     public void doPushAnimation(int type){
+        frames.clear();
         for(int i = 0; i < 16; i++){
             if (type == 2) {
                 getAnimation(ANGRY_PUSH_GIRL,PNG, i + 1, 2);
@@ -34,7 +35,6 @@ public class AnimationAngry extends Animation {
             if (type == 12) {
                 getAnimation(ANGRY_PUSH_OLD,PNG, i + 1, 12);
             }
-
         }
     }
 }

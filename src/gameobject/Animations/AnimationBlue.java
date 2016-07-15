@@ -30,6 +30,7 @@ public class AnimationBlue extends Animation {
     }
 
     public void doPushAnimation(int type){
+        frames.clear();
         for(int i = 0; i < 30; i++){
                 if (type == 1) {
                     getAnimation(BLUE_PUSH_GIRL,PNG, i + 1, 1);

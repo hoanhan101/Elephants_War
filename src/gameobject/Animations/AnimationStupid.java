@@ -27,6 +27,7 @@ public class AnimationStupid extends Animation {
     }
 
     public void doPushAnimation(int type){
+        frames.clear();
         for(int i = 0; i < 25; i++){
             if (type == 6) {
                 getAnimation(STUPID_PUSH_GIRL,PNG, i + 1, 6);

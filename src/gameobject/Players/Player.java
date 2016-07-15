@@ -47,22 +47,21 @@ public class Player {
     }
     public void update (int x){
         Iterator<Elephant> cursorElephant = listElephant.iterator();
-        while (cursorElephant.hasNext()){
-            try {
+        try {
+            while (cursorElephant.hasNext()) {
                 Elephant elephant = cursorElephant.next();
-
-            elephant.update();
-            if(elephant.getPosX() > 900){
-                changeSumPlayer(x,elephant);
-                cursorElephant.remove();
-            }
-            if(elephant.getPosX() < 0){
-                changeSumPlayer(x,elephant);
-                cursorElephant.remove();
-            }
-            }catch (Exception e){
+                elephant.update();
+                if (elephant.getPosX() > 900) {
+                    changeSumPlayer(x, elephant);
+                    cursorElephant.remove();
+                }
+                if (elephant.getPosX() < 0) {
+                    changeSumPlayer(x, elephant);
+                    cursorElephant.remove();
+                }
 
             }
+        }catch (Exception e){
         }
     }
 
@@ -126,12 +125,6 @@ public class Player {
     }
     public void setPosX(int posX) {
         this.posX = posX;
-    }
-    public int checkType(int x){
-        if(x == 1 || x == 4) return 300;
-        if(x == 2 || x == 5) return 100;
-        if(x == 3 || x == 6) return 200;
-        return 0;
     }
     public int getSumElephantGirl() {
         return sumElephantGirl;

@@ -1,5 +1,7 @@
 package gameobject.Animations;
 
+import gameobject.Elephants.Elephant;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -7,6 +9,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by HP on 7/13/2016.
@@ -17,10 +20,11 @@ public class Animation {
 
     private int time;
     private int count_time = 0;
+    private int count_frame = 0;
     private int index;
     private int posX;
     private int posY;
-    public boolean hasCollision;
+    private boolean hasCollision;
     private int strength;
     private int type;
     private BufferedImage subImage;
@@ -80,7 +84,8 @@ public class Animation {
     }
 
     public void draw (Graphics g,int posX,int posY){
-        g.drawImage(frames.get(index),posX,posY,null);
+        if(frames.size() > index)
+            g.drawImage(frames.get(index),posX,posY,null);
     }
 
     private void flipImage(){
@@ -161,4 +166,6 @@ public class Animation {
     public void setType(int type) {
         this.type = type;
     }
+
+
 }

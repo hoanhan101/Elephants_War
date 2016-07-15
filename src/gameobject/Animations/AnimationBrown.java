@@ -27,6 +27,7 @@ public class AnimationBrown extends Animation {
     }
 
     public void doPushAnimation(int type){
+        frames.clear();
         for(int i = 0; i < 37; i++){
             if (type == 5) {
                 getAnimation(BROWN_PUSH_GIRL,PNG, i + 1, 5);

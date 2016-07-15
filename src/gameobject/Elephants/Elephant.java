@@ -33,6 +33,8 @@ public class Elephant {
         loadSpriteByType(type);
     }
 
+    public Elephant(){
+    }
     protected void loadSpriteByType(int type) {
     }
 
@@ -82,11 +84,6 @@ public class Elephant {
 
     private int getHeightSprite(){
         return Way_1 - sprite.getHeight();
-    }
-
-
-    private void position(int x) {
-        posX = x;
     }
 
     public void  moveByVector() {

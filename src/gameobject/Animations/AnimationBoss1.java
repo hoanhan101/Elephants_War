@@ -27,6 +27,7 @@ public class AnimationBoss1 extends Animation {
     }
 
     public void doPushAnimation(int type){
+        frames.clear();
         for(int i = 0; i < 31; i++){
             if (type == 3) {
                 getAnimation(BOSS1_PUSH_GIRL,PNG, i + 1, 3);

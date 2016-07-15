@@ -20,7 +20,7 @@ public class ElephantGreen extends Elephant {
                 loadAnimation(8,GREEN,STRENGTH_ELEPHANT_8);
                 break;
             case TYPE_18:
-                loadAnimation(13,GREEN,STRENGTH_ELEPHANT_8);
+                loadAnimation(18,GREEN,STRENGTH_ELEPHANT_8);
                 break;
         }
     }
