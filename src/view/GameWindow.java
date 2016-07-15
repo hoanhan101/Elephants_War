@@ -1,8 +1,8 @@
 package view;
 
-import gameobject.Player;
-import gameobject.PlayerGirl;
-import gameobject.PlayerOld;
+import gameobject.Players.Player;
+import gameobject.Players.PlayerGirl;
+import gameobject.Players.PlayerOld;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
