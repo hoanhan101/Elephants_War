@@ -4,7 +4,6 @@ package gameobject.Elephants;
  * Created by hoanhan on 7/13/16.
  */
 public class ElephantBoss1 extends Elephant {
-
     public static final String BOSS_1 = "Resource/Char101/Boss1 20/Boss1 1.png";
     private static final int TYPE_3 = 3;
     private static final int TYPE_13 = 13;

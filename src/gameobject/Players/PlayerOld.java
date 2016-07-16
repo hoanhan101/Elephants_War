@@ -1,9 +1,7 @@
 package gameobject.Players;
 
 import gameobject.Elephants.*;
-import gameobject.Singleton.ManagerGirl;
-import gameobject.Singleton.ManagerOld;
-import gameobject.Singleton.ManagerWay2;
+import gameobject.Singleton.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -54,6 +52,31 @@ public class PlayerOld extends Player {
     @Override
     public void call() {
         int x = random.nextInt(9);
+        if(x == 1) x -= 1;
+        if(x == 2) x += 2;
+        if(x == 3) x += 3;
+        boolean a = ManagerBoss1.getInstance().isHas_eat();
+        boolean b = ManagerBoss1.getInstance().isOld_eat();
+        boolean c =ManagerAngry.getInstance().isHas_eat();
+        boolean d = ManagerAngry.getInstance().isOld_eat();
+        boolean e = ManagerBoss2.getInstance().isHas_eat();
+        boolean f = ManagerBoss2.getInstance().isOld_eat();
+        if( c && d ) {
+            x = 1;
+            ManagerAngry.getInstance().setHas_eat(false);
+            ManagerAngry.getInstance().setOld_eat(false);
+
+        }
+        if(a && b){
+            ManagerBoss1.getInstance().setHas_eat(false);
+            ManagerBoss1.getInstance().setOld_eat(false);
+            x = 2;
+        }
+        if(e && f) {
+            x = 3;
+            ManagerBoss2.getInstance().setHas_eat(false);
+            ManagerBoss2.getInstance().setOld_eat(false);
+        }
         if(x == 0)
             listElephant.add(new ElephantBlue(ManagerWay2.getInstance().getWay() - 48,900,11,SPEED_MAN));
         if(x == 1)

@@ -68,7 +68,7 @@ public class Animation {
 
     public void update(){
         count_time += 20;
-        if(count_time > this.time){
+        if(count_time >= this.time){
             count_time = 0;
             if(index == frames.size() - 1){
                 index = 0;

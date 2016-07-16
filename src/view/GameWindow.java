@@ -4,6 +4,7 @@ import gameobject.Menu.*;
 import gameobject.Singleton.*;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -54,6 +55,15 @@ public class GameWindow extends Frame implements Runnable{
         ManagerTime.getInstance().setTime(250);
         ManagerGirl.getInstance().setAnimationGirl(0);
         ManagerOld.getInstance().setAnimationOld(0);
+        ManagerAngry.getInstance().setHas_eat(false);
+        ManagerAngry.getInstance().setGirl_eat(false);
+        ManagerAngry.getInstance().setOld_eat(false);
+        ManagerBoss1.getInstance().setHas_eat(false);
+        ManagerBoss1.getInstance().setGirl_eat(false);
+        ManagerBoss1.getInstance().setOld_eat(false);
+        ManagerBoss2.getInstance().setHas_eat(false);
+        ManagerBoss2.getInstance().setGirl_eat(false);
+        ManagerBoss2.getInstance().setOld_eat(false);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -99,16 +109,19 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     private void playSound() {
-        String gongFile = "Resource/Sound/sound1.wav";
-        InputStream in = null;
-        try {
-            in = new FileInputStream(gongFile);
-            AudioStream audioStream = new AudioStream(in);
+            String gongFile = "Resource/Sound/sound1.wav";
+            InputStream in = null;
+        ContinuousAudioDataStream loop = null;
+            try {
+                in = new FileInputStream(gongFile);
+                AudioStream audioStream = new AudioStream(in);
 
-            AudioPlayer.player.start(audioStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                loop = new ContinuousAudioDataStream(audioStream.getData());
+                AudioPlayer.player.start(loop);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     private void eventKeyCode(KeyEvent e) {

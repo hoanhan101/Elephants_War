@@ -4,7 +4,6 @@ package gameobject.Elephants;
  * Created by hoanhan on 7/13/16.
  */
 public class ElephantAngry extends Elephant {
-
     public static final String ANGRY = "Resource/Char101/Angry 10/Angry 1.png";
     public static final int TYPE_2 = 2;
     public static final int TYPE_12 = 12;

@@ -9,14 +9,14 @@ import java.awt.*;
 public class Bird {
     public int posX;
     public int posY;
-    public int speed;
+    public double speed;
     AnimationBird animationBird = new AnimationBird();
 
-    public Bird(int x,int y,int speed){
+    public Bird(int x,int y,double speed){
         posX = x;
         posY = y;
         this.speed = speed;
-        animationBird = new AnimationBird(11,31);
+        animationBird = new AnimationBird(11,40);
     }
     public Bird(){}
 

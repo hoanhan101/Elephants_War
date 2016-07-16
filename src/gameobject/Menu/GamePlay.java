@@ -1,6 +1,7 @@
 package gameobject.Menu;
 
 import gameobject.Birds.Bird;
+import gameobject.Items.Item;
 import gameobject.Players.AnimationGirl;
 import gameobject.Players.Player;
 import gameobject.Players.PlayerGirl;
@@ -13,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by HP on 7/15/2016.
@@ -28,6 +31,7 @@ public class GamePlay extends Screen {
     BufferedImage background;
     BufferedImage buttonBack;
     Bird bird = new Bird();
+    Item item = new Item();
     Player playerGril ;
     Player playerOld;
 
@@ -35,9 +39,11 @@ public class GamePlay extends Screen {
     int count_keyWord_2 = 100;
     int count_girl;
     int count_old;
-    int count_bird;
+    int count_bird = 0;
     int n,m;
-
+    Random random = new Random();
+    int x;
+    ArrayList<Item> listItem = new ArrayList<>();
     public GamePlay(){
         initPlayer();
     }
@@ -87,6 +93,8 @@ public class GamePlay extends Screen {
 
         if(count_bird  == 1000){
             bird = new Bird(900,50,-1);
+            item = new Item(870,50,-2);
+            listItem.add(item);
             count_bird = 0;
         }
         if(n == 1){
@@ -106,6 +114,7 @@ public class GamePlay extends Screen {
 
         }
         if(bird != null) bird.update();
+        check_Collision();
     }
 
     private void initPlayer() {
@@ -154,10 +163,14 @@ public class GamePlay extends Screen {
         playerGril.draw(g);
         playerOld.draw(g);
 
-            if(bird != null)bird.draw(g);
-
-
-
+        if(bird != null){
+            bird.draw(g);
+        }
+        if(listItem.size() > 0)
+            for(int i = 0; i < listItem.size();i++){
+                listItem.get(i).draw(g,listItem.get(i).sprite);
+                listItem.get(i).update();
+            }
             Graphics2D g2 = (Graphics2D)g;
             g2.setFont(new Font("Calibri",Font.BOLD,50));
             g2.setColor(Color.RED);
@@ -165,6 +178,58 @@ public class GamePlay extends Screen {
             g2.drawString(ManagerScore.getInstance().getScore2()+"",550,100);
             g2.setColor(Color.ORANGE);
             g2.drawString(ManagerTime.getInstance().getTime()+"",450,80);
+    }
+    public void check_Collision(){
+        try{
+        if(listItem.size() > 0 && playerGril.listElephant.size() > 0){
+            for(int i = 0; i < listItem.size(); i++){
+                for(int j = 0; j < playerGril.listElephant.size(); j++){
+                    if(listItem.get(i).getRectangle().intersects(playerGril.listElephant.get(j).animation.getRectangle())){
+                        if(listItem.get(i).sprite == Item.angry) {
+                            ManagerAngry.getInstance().setHas_eat(true);
+                            ManagerAngry.getInstance().setGirl_eat(true);
+                            listItem.remove(i);
+                        }
+                        if(listItem.get(i).sprite == Item.boss1) {
+                            ManagerBoss1.getInstance().setHas_eat(true);
+                            ManagerBoss1.getInstance().setGirl_eat(true);
+                            listItem.remove(i);
+                        }
+                        if(listItem.get(i).sprite == Item.boss2) {
+                            ManagerBoss2.getInstance().setHas_eat(true);
+                            ManagerBoss2.getInstance().setGirl_eat(true);
+                            listItem.remove(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(listItem.size() > 0 && playerOld.listElephant.size() > 0){
+            for(int i = 0; i < listItem.size(); i++){
+                for(int j = 0; j < playerOld.listElephant.size(); j++){
+                    if(listItem.get(i).getRectangle().intersects(playerOld.listElephant.get(j).animation.getRectangle())){
+                        if(listItem.get(i).sprite == Item.angry) {
+                            ManagerAngry.getInstance().setHas_eat(true);
+                            ManagerAngry.getInstance().setOld_eat(true);
+                            listItem.remove(i);
+                        }
+                        if(listItem.get(i).sprite == Item.boss1) {
+                            ManagerBoss1.getInstance().setHas_eat(true);
+                            ManagerBoss1.getInstance().setOld_eat(true);
+                            listItem.remove(i);
+                        }
+                        if(listItem.get(i).sprite == Item.boss2) {
+                            ManagerBoss2.getInstance().setHas_eat(true);
+                            ManagerBoss2.getInstance().setOld_eat(true);
+                            listItem.remove(i);
+                        }
+                    }
+                }
+            }
+        }}catch (Exception e){
+
+        }
     }
 
     public void initPlay2(int keyCode) {
