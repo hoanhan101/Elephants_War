@@ -59,31 +59,31 @@ public class ElephantAvatar {
             try {
                 switch(n){
                     case 2 :
-                        g.drawImage(ImageIO.read(new File(Angry)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Angry)),900,30,null);
                         break;
                     case 4 :
-                        g.drawImage(ImageIO.read(new File(Blue)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Blue)),900,30,null);
                         break;
                     case 3 :
-                        g.drawImage(ImageIO.read(new File(Boss1)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Boss1)),900,30,null);
                         break;
                     case 1 :
-                        g.drawImage(ImageIO.read(new File(Boss2)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Boss2)),900,30,null);
                         break;
                     case 5 :
-                        g.drawImage(ImageIO.read(new File(Brown)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Brown)),900,30,null);
                         break;
                     case 9 :
-                        g.drawImage(ImageIO.read(new File(Pink)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Pink)),900,30,null);
                         break;
                     case 6 :
-                        g.drawImage(ImageIO.read(new File(Stupid)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Stupid)),900,30,null);
                         break;
                     case 8 :
-                        g.drawImage(ImageIO.read(new File(Green)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(Green)),900,30,null);
                         break;
                     case 7 :
-                        g.drawImage(ImageIO.read(new File(BigBrown)),950,30,null);
+                        g.drawImage(ImageIO.read(new File(BigBrown)),900,30,null);
                         break;
                 }
             } catch (IOException e) {

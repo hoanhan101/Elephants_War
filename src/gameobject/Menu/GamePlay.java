@@ -90,13 +90,13 @@ public class GamePlay extends Screen {
     @Override
     public void update() {
         if(v ==1) {
-            x = random.nextInt(9);
-            ManagerCall.getInstance().setBefore(x);
+            x = random.nextInt(6);
+            ManagerCall.getInstance().setBefore(x+3);
             v = 0;
         }
         if(h == 1){
-            f = random.nextInt(9);
-            ManagerCall.getInstance().setBeforeMan(f);
+            f = random.nextInt(6);
+            ManagerCall.getInstance().setBeforeMan(f+3);
             h = 0;
         }
         n =  ManagerGirl.getInstance().getAnimationGirl();
@@ -142,8 +142,8 @@ public class GamePlay extends Screen {
     public void overGame(){
         int a = ManagerScore.getInstance().getScore1();
         int b = ManagerScore.getInstance().getScore2();
-        if (a == 50) ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
-        if (b == 50) ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
+        if (a == 1) ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
+        if (b == 1) ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
     }
 
     private void initPlayer() {
