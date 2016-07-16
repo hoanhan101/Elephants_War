@@ -21,7 +21,7 @@ public class Elephant {
     public int type;
     public Animation animation = new Animation();
     private int check_Collision = 0;
-    private BufferedImage sprite;
+    public BufferedImage sprite;
     private int posX;
     private int speed;
     private int strength;

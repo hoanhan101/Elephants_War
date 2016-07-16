@@ -23,6 +23,7 @@ public class GameWindow extends Frame implements Runnable{
     public static final int count_repeat = 20;
 
     int collision;
+    int count_Time;
 
     BufferedImage buffImage ;
 
@@ -47,6 +48,9 @@ public class GameWindow extends Frame implements Runnable{
         ManagerMenu.getInstance().getStackScreen().push(new FirstBackground());
         ManagerWay.getInstance().setWay(200);
         ManagerWay2.getInstance().setWay(200);
+        ManagerScore.getInstance().setScore1(0);
+        ManagerScore.getInstance().setScore2(0);
+        ManagerTime.getInstance().setTime(250);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -119,10 +123,15 @@ public class GameWindow extends Frame implements Runnable{
     }
 
     public void gameUpdate(){
-
+        count_Time++;
        ManagerMenu.getInstance().getStackScreen().peek().update();
         checkCollision(mouse);
         mouse.update();
+        if(count_Time == 50){
+            int n = ManagerTime.getInstance().getTime();
+            ManagerTime.getInstance().setTime(n-1);
+            count_Time = 0;
+        }
     }
 
     public void gameLoop(){

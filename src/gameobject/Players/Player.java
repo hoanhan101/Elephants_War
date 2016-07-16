@@ -1,6 +1,7 @@
 package gameobject.Players;
 
 import gameobject.Elephants.Elephant;
+import gameobject.Menu.ManagerScore;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -51,13 +52,19 @@ public class Player {
             while (cursorElephant.hasNext()) {
                 Elephant elephant = cursorElephant.next();
                 elephant.update();
-                if (elephant.getPosX() > 2000) {
+                if (elephant.getPosX() > 1000) {
                     changeSumPlayer(x, elephant);
                     cursorElephant.remove();
+                    int n =ManagerScore.getScore1();
+                    if(x == 1) ManagerScore.getInstance().setScore1(n+1);
+                    if(x == 2) ManagerScore.getInstance().setScore1(n+1);
                 }
-                if (elephant.getPosX() < -1000) {
+                if (elephant.getPosX() < 0) {
                     changeSumPlayer(x, elephant);
                     cursorElephant.remove();
+                    int n =ManagerScore.getScore2();
+                    if(x == 2) ManagerScore.getInstance().setScore2(n+1);
+                    if(x == 1) ManagerScore.getInstance().setScore2(n+1);
                 }
 
             }
@@ -66,29 +73,29 @@ public class Player {
     }
     private void changeSumPlayer(int x,Elephant elephant){
         if(x == 1) {
-            if(elephant.posY == 200)
+            if(elephant.posY + elephant.sprite.getHeight() == 200)
                 sumElephantGirl[0] -= elephant.getStrength();
-            if(elephant.posY == 300)
+            if(elephant.posY + elephant.sprite.getHeight() == 300)
                 sumElephantGirl[1] -= elephant.getStrength();
-            if(elephant.posY == 400)
+            if(elephant.posY + elephant.sprite.getHeight()== 400)
                 sumElephantGirl[2] -= elephant.getStrength();
-            if(elephant.posY == 500)
+            if(elephant.posY+ elephant.sprite.getHeight() == 500)
                 sumElephantGirl[3] -= elephant.getStrength();
-            if(elephant.posY == 600)
+            if(elephant.posY + elephant.sprite.getHeight()== 600)
                 sumElephantGirl[4] -= elephant.getStrength();
             for(int i = 0; i < 5; i++)
                 if (sumElephantGirl[i] < 0) sumElephantGirl[i]= 0;
         }
         if(x == 2) {
-            if(elephant.posY == 200)
+            if(elephant.posY+ elephant.sprite.getHeight() == 200)
                 sumElephantMan[0] -= elephant.getStrength();
-            if(elephant.posY == 300)
+            if(elephant.posY+ elephant.sprite.getHeight() == 300)
                 sumElephantMan[1] -= elephant.getStrength();
-            if(elephant.posY == 400)
+            if(elephant.posY+ elephant.sprite.getHeight() == 400)
                 sumElephantMan[2] -= elephant.getStrength();
-            if(elephant.posY == 500)
+            if(elephant.posY + elephant.sprite.getHeight()== 500)
                 sumElephantMan[3] -= elephant.getStrength();
-            if(elephant.posY == 600)
+            if(elephant.posY+ elephant.sprite.getHeight() == 600)
                 sumElephantMan[4] -= elephant.getStrength();
             for(int i = 0; i < 5; i++)
             if (sumElephantMan[i] < 0) sumElephantMan[i] = 0;

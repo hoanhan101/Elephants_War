@@ -1,5 +1,6 @@
 package gameobject.Menu;
 
+import gameobject.Birds.Bird;
 import gameobject.Players.Player;
 import gameobject.Players.PlayerGirl;
 import gameobject.Players.PlayerOld;
@@ -25,12 +26,13 @@ public class GamePlay extends Screen {
     public static final int POSITION_BACK_Y= 620;
     BufferedImage background;
     BufferedImage buttonBack;
-
+    Bird bird = new Bird();
     Player playerGril ;
     Player playerOld;
 
     int count_keyWord_1 = 100;
     int count_keyWord_2 = 100;
+    int count_bird;
 
     public GamePlay(){
         initPlayer();
@@ -71,11 +73,17 @@ public class GamePlay extends Screen {
 
         count_keyWord_1++;
         count_keyWord_2++;
+        count_bird++;
         playerGril.update(1);
         playerOld.update(2);
         if(playerGril.listElephant.size() > 0 && playerOld.listElephant.size() > 0)
             playerGril.checkCollision(playerOld);
 
+        if(count_bird  == 1000){
+            bird = new Bird(900,50,-1);
+            count_bird = 0;
+        }
+        if(bird != null) bird.update();
     }
 
     private void initPlayer() {
@@ -111,6 +119,17 @@ public class GamePlay extends Screen {
             g.drawImage(buttonBack,POSITION_BACK_X,POSITION_BACK_Y,null);
             playerGril.draw(g);
             playerOld.draw(g);
+
+
+            if(bird != null)bird.draw(g);
+
+            Graphics2D g2 = (Graphics2D)g;
+            g2.setFont(new Font("Calibri",Font.BOLD,50));
+            g2.setColor(Color.RED);
+            g2.drawString(ManagerScore.getInstance().getScore1()+"",400,100);
+            g2.drawString(ManagerScore.getInstance().getScore2()+"",550,100);
+            g2.setColor(Color.ORANGE);
+            g2.drawString(ManagerTime.getInstance().getTime()+"",450,80);
     }
 
     public void initPlay2(int keyCode) {
