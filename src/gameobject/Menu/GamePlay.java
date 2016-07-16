@@ -127,7 +127,7 @@ public class GamePlay extends Screen {
             g2.setFont(new Font("Calibri",Font.BOLD,50));
             g2.setColor(Color.RED);
             g2.drawString(ManagerScore.getInstance().getScore1()+"",400,100);
-            g2.drawString(ManagerScore.getInstance().getScore2()+"",550,100);
+            g2.drawString(ManagerScore.getInstance().getScore2()+"",555,100);
             g2.setColor(Color.ORANGE);
             g2.drawString(ManagerTime.getInstance().getTime()+"",450,80);
     }
