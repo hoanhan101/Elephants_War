@@ -36,7 +36,7 @@ public class Player {
 
     }
 
-    public void call(){
+    public void call(int x){
     }
 
     public void draw(Graphics g){

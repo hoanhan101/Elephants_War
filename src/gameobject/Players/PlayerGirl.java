@@ -15,11 +15,16 @@ import java.util.Random;
  */
 public class PlayerGirl extends Player {
     public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
+    public static final String SKILL_BOSS3 = "Resource/Char101/AnimalSkill/SkillFire.png";
+
     public static final int TYPE_PLAYER_GIRL = 1;
     public AnimationGirl animationGirl = new AnimationGirl();
     final int SPEED_GTRL = 1;
     public int n ;
     Random random = new Random();
+    boolean a,b;
+    int x ;
+    int y ;
 
     public PlayerGirl(int posX,int posY, int type) {
         super(posX,posY,type);
@@ -40,18 +45,19 @@ public class PlayerGirl extends Player {
     }
 
     public void draw(Graphics g){
-
+        x= posX;
+        y = posY;
         n = ManagerGirl.getInstance().getAnimationGirl();
         if(n!=1)
             g.drawImage(sprite,posX, posY,null);
+        a = ManagerFire.getInstance().isHas_eat();
+        b = ManagerFire.getInstance().isGirl_eat();
         for (int i = 0; i < listElephant.size(); i++){
             listElephant.get(i).draw(g);
         }
-    }
 
-    @Override
-    public void call() {
-        int x = random.nextInt(9);
+    }
+    public void call(int x) {
         if(x == 1) x -= 1;
         if(x == 2) x += 2;
         if(x == 3) x += 3;
@@ -76,6 +82,7 @@ public class PlayerGirl extends Player {
             ManagerBoss2.getInstance().setHas_eat(false);
             ManagerBoss2.getInstance().setGirl_eat(false);
         }
+
         if(x == 0)
             listElephant.add(new ElephantBlue(ManagerWay.getInstance().getWay() - 48,0,1,SPEED_GTRL));
         if(x == 1 )

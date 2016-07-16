@@ -50,8 +50,7 @@ public class PlayerOld extends Player {
     }
 
     @Override
-    public void call() {
-        int x = random.nextInt(9);
+    public void call(int x) {
         if(x == 1) x -= 1;
         if(x == 2) x += 2;
         if(x == 3) x += 3;

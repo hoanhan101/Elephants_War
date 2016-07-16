@@ -1,6 +1,7 @@
 package gameobject.Menu;
 
 import gameobject.Birds.Bird;
+import gameobject.Elephants.ElephantAvatar;
 import gameobject.Items.Item;
 import gameobject.Players.AnimationGirl;
 import gameobject.Players.Player;
@@ -40,9 +41,15 @@ public class GamePlay extends Screen {
     int count_girl;
     int count_old;
     int count_bird = 0;
-    int n,m;
+    int n;
+    int v;
+    boolean a;
+    boolean b;
+    ElephantAvatar elephantAvatar;
+    ElephantAvatar elephantAvatar2;
     Random random = new Random();
     int x;
+    int  k,m,t,h,f;
     ArrayList<Item> listItem = new ArrayList<>();
     public GamePlay(){
         initPlayer();
@@ -52,7 +59,8 @@ public class GamePlay extends Screen {
         switch (keyChar){
             case 'd':
                 if(count_keyWord_2 >= count_keyWord) {
-                    playerGril.call();
+                    v = 1;
+                    playerGril.call(x);
                     ManagerGirl.getInstance().setAnimationGirl(1);
                     count_keyWord_2 = 0;
                 }
@@ -81,6 +89,16 @@ public class GamePlay extends Screen {
 
     @Override
     public void update() {
+        if(v ==1) {
+            x = random.nextInt(9);
+            ManagerCall.getInstance().setBefore(x);
+            v = 0;
+        }
+        if(h == 1){
+            f = random.nextInt(9);
+            ManagerCall.getInstance().setBeforeMan(f);
+            h = 0;
+        }
         n =  ManagerGirl.getInstance().getAnimationGirl();
         m =  ManagerOld.getInstance().getAnimationOld();
         count_keyWord_1++;
@@ -92,8 +110,8 @@ public class GamePlay extends Screen {
             playerGril.checkCollision(playerOld);
 
         if(count_bird  == 1000){
-            bird = new Bird(900,50,-1);
-            item = new Item(870,50,-2);
+            bird = new Bird(900,50,-0.5);
+            item = new Item(900,50,-2);
             listItem.add(item);
             count_bird = 0;
         }
@@ -115,6 +133,17 @@ public class GamePlay extends Screen {
         }
         if(bird != null) bird.update();
         check_Collision();
+        k =ManagerCall.getInstance().getBefore();
+        t =ManagerCall.getInstance().getBeforeMan();
+        overGame();
+
+    }
+
+    public void overGame(){
+        int a = ManagerScore.getInstance().getScore1();
+        int b = ManagerScore.getInstance().getScore2();
+        if (a == 50) ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
+        if (b == 50) ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
     }
 
     private void initPlayer() {
@@ -166,6 +195,8 @@ public class GamePlay extends Screen {
         if(bird != null){
             bird.draw(g);
         }
+        elephantAvatar = new ElephantAvatar(1,k+1,g);
+        elephantAvatar2 = new ElephantAvatar(2,t+1,g);
         if(listItem.size() > 0)
             for(int i = 0; i < listItem.size();i++){
                 listItem.get(i).draw(g,listItem.get(i).sprite);
@@ -200,6 +231,13 @@ public class GamePlay extends Screen {
                             ManagerBoss2.getInstance().setGirl_eat(true);
                             listItem.remove(i);
                         }
+                        if(listItem.get(i).sprite == Item.boss3) {
+                            ManagerFire.getInstance().setHas_eat(true);
+                            ManagerFire.getInstance().setGirl_eat(true);
+                            a = ManagerFire.getInstance().isHas_eat();
+                            b = ManagerFire.getInstance().isGirl_eat();
+                            listItem.remove(i);
+                        }
                     }
                 }
             }
@@ -224,6 +262,11 @@ public class GamePlay extends Screen {
                             ManagerBoss2.getInstance().setOld_eat(true);
                             listItem.remove(i);
                         }
+                        if(listItem.get(i).sprite == Item.boss3) {
+                            ManagerFire.getInstance().setHas_eat(true);
+                            ManagerFire.getInstance().setOld_eat(true);
+                            listItem.remove(i);
+                        }
                     }
                 }
             }
@@ -236,7 +279,8 @@ public class GamePlay extends Screen {
         switch (keyCode) {
             case KeyEvent.VK_LEFT:
                 if (count_keyWord_1 >= count_keyWord) {
-                    playerOld.call();
+                    h = 1;
+                    playerOld.call(f);
                     ManagerOld.getInstance().setAnimationOld(2);
                     count_keyWord_1 = 0;
                 }

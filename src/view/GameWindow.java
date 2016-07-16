@@ -64,6 +64,11 @@ public class GameWindow extends Frame implements Runnable{
         ManagerBoss2.getInstance().setHas_eat(false);
         ManagerBoss2.getInstance().setGirl_eat(false);
         ManagerBoss2.getInstance().setOld_eat(false);
+        ManagerFire.getInstance().setHas_eat(false);
+        ManagerFire.getInstance().setGirl_eat(false);
+        ManagerFire.getInstance().setOld_eat(false);
+        ManagerCall.getInstance().setBefore(0);
+        ManagerCall.getInstance().setBeforeMan(0);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

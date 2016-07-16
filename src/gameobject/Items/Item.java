@@ -14,7 +14,7 @@ public class Item  {
     public static final String SKILL_ANGRY = "Resource/Char101/AnimalSkill/SkillAngry.png";
     public static final String SKILL_BOSS1 = "Resource/Char101/AnimalSkill/SkillBoss.png";
     public static final String SKILL_BOSS2 = "Resource/Char101/AnimalSkill/SkillBoss2.png";
-    public static final String SKILL_BOSS3 = "Resource/Char101/AnimalSkill/SkillBoss2.png";
+    public static final String SKILL_BOSS3 = "Resource/Char101/AnimalSkill/SkillFire.png";
 
     public int posX;
     public int posY;
@@ -23,6 +23,7 @@ public class Item  {
     public static BufferedImage angry;
     public static BufferedImage boss1;
     public static BufferedImage boss2;
+    public static BufferedImage boss3;
     public static BufferedImage sprite;
 
     Random randow = new Random();
@@ -42,14 +43,15 @@ public class Item  {
             angry = ImageIO.read(new File(SKILL_ANGRY));
             boss1 = ImageIO.read(new File(SKILL_BOSS1));
             boss2 = ImageIO.read(new File(SKILL_BOSS2));
-
+            boss3 = ImageIO.read(new File(SKILL_BOSS3));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        x = randow.nextInt(3);
+        x = randow.nextInt(4);
         if(x  == 0) sprite = angry;
         if(x  == 1) sprite = boss1;
         if(x  == 2) sprite = boss2;
+        if(x  == 3) sprite = boss3;
     }
 
     public Rectangle getRectangle(){
@@ -57,7 +59,7 @@ public class Item  {
     }
     public void update(){
         posX += speed;
-        if(posX == 500 && z == 0){
+        if(posX == 600 && z == 0){
             speed = 0;
             posY = (randow.nextInt(5)+2)*100-sprite.getHeight();
             z++;
