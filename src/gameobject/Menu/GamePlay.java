@@ -73,7 +73,8 @@ public class GamePlay extends Screen {
         count_keyWord_2++;
         playerGril.update(1);
         playerOld.update(2);
-        playerGril.checkCollision(playerOld);
+        if(playerGril.listElephant.size() > 0 && playerOld.listElephant.size() > 0)
+            playerGril.checkCollision(playerOld);
 
     }
 

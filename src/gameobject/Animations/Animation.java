@@ -20,6 +20,7 @@ public class Animation {
 
     private int time;
     private int count_time = 0;
+    private int count_frame = 0;
     private int index;
     private int posX;
     private int posY;
