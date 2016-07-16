@@ -58,9 +58,9 @@ public class PlayerGirl extends Player {
 
     }
     public void call(int x) {
-        if(x == 1) x -= 1;
+        if(x == 1) x += 4;
         if(x == 2) x += 2;
-        if(x == 3) x += 3;
+        if(x == 0) x += 3;
         boolean a = ManagerBoss1.getInstance().isHas_eat();
         boolean b = ManagerBoss1.getInstance().isGirl_eat();
         boolean c =ManagerAngry.getInstance().isHas_eat();
@@ -78,18 +78,18 @@ public class PlayerGirl extends Player {
             ManagerBoss1.getInstance().setGirl_eat(false);
         }
         if(e&& f){
-            x = 3;
+            x = 0;
             ManagerBoss2.getInstance().setHas_eat(false);
             ManagerBoss2.getInstance().setGirl_eat(false);
         }
 
-        if(x == 0)
+        if(x == 3)
             listElephant.add(new ElephantBlue(ManagerWay.getInstance().getWay() - 48,0,1,SPEED_GTRL));
         if(x == 1 )
             listElephant.add(new ElephantAngry(ManagerWay.getInstance().getWay() - 101,0,2,SPEED_GTRL));
         if(x == 2)
             listElephant.add(new ElephantBoss1(ManagerWay.getInstance().getWay() - 190,0,3,SPEED_GTRL));
-        if(x == 3)
+        if(x == 0)
             listElephant.add(new ElephantBoss2(ManagerWay.getInstance().getWay() - 220,0,4,SPEED_GTRL));
         if(x == 4)
             listElephant.add(new ElephantBrown(ManagerWay.getInstance().getWay() - 55,0,5,SPEED_GTRL));

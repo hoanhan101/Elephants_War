@@ -60,7 +60,7 @@ public class GamePlay extends Screen {
             case 'd':
                 if(count_keyWord_2 >= count_keyWord) {
                     v = 1;
-                    playerGril.call(x);
+                    playerGril.call(x+3);
                     ManagerGirl.getInstance().setAnimationGirl(1);
                     count_keyWord_2 = 0;
                 }
@@ -280,7 +280,7 @@ public class GamePlay extends Screen {
             case KeyEvent.VK_LEFT:
                 if (count_keyWord_1 >= count_keyWord) {
                     h = 1;
-                    playerOld.call(f);
+                    playerOld.call(f+3);
                     ManagerOld.getInstance().setAnimationOld(2);
                     count_keyWord_1 = 0;
                 }

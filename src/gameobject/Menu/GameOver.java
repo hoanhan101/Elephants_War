@@ -12,8 +12,8 @@ import java.io.IOException;
  * Created by HP on 7/16/2016.
  */
 public class GameOver extends Screen {
-    public static final String girl = "Resource/Background/GirlWin.png";
-    public static final String nam = "Resource/Background/ManWin.png";
+    public static final String girl = "Resource/Background/GirlWin4.jpg";
+    public static final String nam = "Resource/Background/ManWin2.jpg";
     public  static final String buttun = "Resource/Char101/Button/ButtonBack.png";
     int k;
     BufferedImage sprite;
@@ -48,7 +48,7 @@ public class GameOver extends Screen {
 
     @Override
     public Rectangle getRectangleButton(int x, int y, BufferedImage image) {
-        return null;
+        return new Rectangle(x,y,image.getWidth(),image.getHeight());
     }
 
     @Override

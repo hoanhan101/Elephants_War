@@ -27,13 +27,13 @@ public class ElephantAvatar {
             case 2 :
                 g.drawImage(ImageIO.read(new File(Angry)),30,30,null);
                 break;
-            case 1 :
+            case 4 :
                 g.drawImage(ImageIO.read(new File(Blue)),30,30,null);
                 break;
             case 3 :
                 g.drawImage(ImageIO.read(new File(Boss1)),30,30,null);
                 break;
-            case 4 :
+            case 1 :
                 g.drawImage(ImageIO.read(new File(Boss2)),30,30,null);
                 break;
             case 5 :
@@ -61,13 +61,13 @@ public class ElephantAvatar {
                     case 2 :
                         g.drawImage(ImageIO.read(new File(Angry)),950,30,null);
                         break;
-                    case 1 :
+                    case 4 :
                         g.drawImage(ImageIO.read(new File(Blue)),950,30,null);
                         break;
                     case 3 :
                         g.drawImage(ImageIO.read(new File(Boss1)),950,30,null);
                         break;
-                    case 4 :
+                    case 1 :
                         g.drawImage(ImageIO.read(new File(Boss2)),950,30,null);
                         break;
                     case 5 :
