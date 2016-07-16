@@ -1,17 +1,14 @@
 package view;
 
 import gameobject.Menu.*;
-import gameobject.Players.Player;
-import gameobject.Players.PlayerGirl;
-import gameobject.Players.PlayerOld;
-import javafx.stage.Screen;
+import gameobject.Singleton.*;
 
-import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by hoanhan on 7/13/16.
@@ -51,6 +48,8 @@ public class GameWindow extends Frame implements Runnable{
         ManagerScore.getInstance().setScore1(0);
         ManagerScore.getInstance().setScore2(0);
         ManagerTime.getInstance().setTime(250);
+        ManagerGirl.getInstance().setAnimationGirl(0);
+        ManagerOld.getInstance().setAnimationOld(0);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -94,7 +93,59 @@ public class GameWindow extends Frame implements Runnable{
             }
         });
     }
+    public void addSound(){
+//        try{
+//            AudioInputStream audioInputStream =
+//                    AudioSystem.getAudioInputStream(
+//                            this.getClass().getResource("sound1.mp3"));
+//            Clip clip = AudioSystem.getClip();
+//            clip.open(audioInputStream);
+//            clip.start();
+//        }
+//        catch(Exception ex)
+//        {
+//        }
+////        try {
+//            URL url = this.getClass().getClassLoader().getResource("src/Sound/sound1.mp3");
+//            Clip clip = AudioSystem.getClip();
+//            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+//                    Main.class.getResourceAsStream("/path/to/sounds/"+ url));
+//            clip.open(inputStream);
+//            clip.start();
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+//        InputStream in = null;
+//        try {
+//            in = new FileInputStream("Resource/Sound/sound1.mp3");
+//
+//
+//
+//        AudioStream as = new AudioStream(in);
+//            AudioPlayer.player.start(as);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            // Open an audio input stream.
+//            URL url = this.getClass().getClassLoader().getResource("gameover.wav");
+//            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+//            // Get a sound clip resource.
+//            Clip clip = AudioSystem.getClip();
+//            // Open audio clip and load samples from the audio input stream.
+//            clip.open(audioIn);
+//            clip.start();
+//        } catch (UnsupportedAudioFileException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (LineUnavailableException e) {
+//            e.printStackTrace();
+//        }
+// Use the static class member "player" from class AudioPlayer to play
+// clip.
 
+    }
     private void eventKeyCode(KeyEvent e) {
         if((ManagerMenu.getInstance().getStackScreen().peek()) instanceof GamePlay) {
             ((GamePlay) ManagerMenu.getInstance().getStackScreen().peek()).initPlay2(e.getKeyCode());
@@ -162,6 +213,7 @@ public class GameWindow extends Frame implements Runnable{
 
     @Override
     public void run() {
+        addSound();
         gameLoop();
     }
 }

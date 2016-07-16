@@ -1,16 +1,13 @@
 package gameobject.Elephants;
 
 import gameobject.Animations.*;
-import gameobject.Menu.ManagerWay;
-import gameobject.Players.Player;
+import gameobject.Singleton.ManagerWay;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by hoanhan on 7/13/16.

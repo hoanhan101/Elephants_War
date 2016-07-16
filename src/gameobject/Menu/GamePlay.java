@@ -1,10 +1,11 @@
 package gameobject.Menu;
 
 import gameobject.Birds.Bird;
+import gameobject.Players.AnimationGirl;
 import gameobject.Players.Player;
 import gameobject.Players.PlayerGirl;
 import gameobject.Players.PlayerOld;
-import javafx.scene.input.KeyCode;
+import gameobject.Singleton.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,7 +33,10 @@ public class GamePlay extends Screen {
 
     int count_keyWord_1 = 100;
     int count_keyWord_2 = 100;
+    int count_girl;
+    int count_old;
     int count_bird;
+    int n,m;
 
     public GamePlay(){
         initPlayer();
@@ -43,6 +47,7 @@ public class GamePlay extends Screen {
             case 'd':
                 if(count_keyWord_2 >= count_keyWord) {
                     playerGril.call();
+                    ManagerGirl.getInstance().setAnimationGirl(1);
                     count_keyWord_2 = 0;
                 }
                 break;
@@ -70,7 +75,8 @@ public class GamePlay extends Screen {
 
     @Override
     public void update() {
-
+        n =  ManagerGirl.getInstance().getAnimationGirl();
+        m =  ManagerOld.getInstance().getAnimationOld();
         count_keyWord_1++;
         count_keyWord_2++;
         count_bird++;
@@ -83,12 +89,28 @@ public class GamePlay extends Screen {
             bird = new Bird(900,50,-1);
             count_bird = 0;
         }
+        if(n == 1){
+            count_girl++;
+            if(count_girl == 75){
+                ManagerGirl.getInstance().setAnimationGirl(0);
+                count_girl = 0;
+            }
+
+        }
+        if(m == 2){
+            count_old++;
+            if(count_old == 80){
+                ManagerOld.getInstance().setAnimationOld(0);
+                count_old = 0;
+            }
+
+        }
         if(bird != null) bird.update();
     }
 
     private void initPlayer() {
         playerGril = new PlayerGirl(0,ManagerWay.getInstance().getWay() - playerHeight1,PlayerGirl.TYPE_PLAYER_GIRL);
-        playerOld = new PlayerOld(900,ManagerWay2.getInstance().getWay() - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
+        playerOld = new PlayerOld(900, ManagerWay2.getInstance().getWay() - playerHeight2,PlayerOld.TYPE_PLAYER_OLD);
     }
 
     public Rectangle getRectangleButton(int x,int y,BufferedImage image){
@@ -115,19 +137,32 @@ public class GamePlay extends Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
             g.drawImage(background,0,0,null);
             g.drawImage(buttonBack,POSITION_BACK_X,POSITION_BACK_Y,null);
-            playerGril.draw(g);
-            playerOld.draw(g);
 
+
+
+        if(n == 1){
+            ((PlayerGirl)playerGril).animationGirl.draw(g,playerGril.posX,playerGril.posY);
+            ((PlayerGirl)playerGril).animationGirl.update();
+        }
+        if(m == 2){
+            ((PlayerOld)playerOld).animationOld.draw(g,playerOld.posX,playerOld.posY);
+            ((PlayerOld)playerOld).animationOld.update();
+        }
+        playerGril.draw(g);
+        playerOld.draw(g);
 
             if(bird != null)bird.draw(g);
+
+
 
             Graphics2D g2 = (Graphics2D)g;
             g2.setFont(new Font("Calibri",Font.BOLD,50));
             g2.setColor(Color.RED);
             g2.drawString(ManagerScore.getInstance().getScore1()+"",400,100);
-            g2.drawString(ManagerScore.getInstance().getScore2()+"",555,100);
+            g2.drawString(ManagerScore.getInstance().getScore2()+"",550,100);
             g2.setColor(Color.ORANGE);
             g2.drawString(ManagerTime.getInstance().getTime()+"",450,80);
     }
@@ -137,6 +172,7 @@ public class GamePlay extends Screen {
             case KeyEvent.VK_LEFT:
                 if (count_keyWord_1 >= count_keyWord) {
                     playerOld.call();
+                    ManagerOld.getInstance().setAnimationOld(2);
                     count_keyWord_1 = 0;
                 }
                 break;

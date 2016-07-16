@@ -1,7 +1,8 @@
 package gameobject.Players;
 
 import gameobject.Elephants.Elephant;
-import gameobject.Menu.ManagerScore;
+import gameobject.Singleton.ManagerGirl;
+import gameobject.Singleton.ManagerScore;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,9 +17,9 @@ public class Player {
     private static final int SPEED_UPDATE_GIRL = -1;
     private static final int SPEED_UPDATE_OLDMAN = 1;
 
-    private BufferedImage sprite;
-    private int posX;
-    private int posY;
+    public BufferedImage sprite;
+    public int posX;
+    public int posY;
     private static int[] sumElephantGirl = new int[5] ;
     private static int[] sumElephantMan = new int[5];
 
@@ -39,12 +40,11 @@ public class Player {
     }
 
     public void draw(Graphics g){
+                g.drawImage(sprite,posX, posY,null);
+            for (int i = 0; i < listElephant.size(); i++){
+                listElephant.get(i).draw(g);
+            }
 
-        g.drawImage(sprite,posX, posY,null);
-        Iterator<Elephant> cursorElephant = listElephant.iterator();
-        while(cursorElephant.hasNext()){
-            cursorElephant.next().draw(g);
-        }
     }
     public void update (int x){
         Iterator<Elephant> cursorElephant = listElephant.iterator();

@@ -1,9 +1,12 @@
 package gameobject.Players;
 
+import gameobject.Birds.AnimationBird;
 import gameobject.Elephants.*;
-import gameobject.Menu.ManagerWay;
+import gameobject.Singleton.ManagerGirl;
+import gameobject.Singleton.ManagerWay;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -14,13 +17,14 @@ import java.util.Random;
 public class PlayerGirl extends Player {
     public static final String PLAYER_GIRL = "Resource/Char/1Girl.png";
     public static final int TYPE_PLAYER_GIRL = 1;
-
+    public AnimationGirl animationGirl = new AnimationGirl();
     final int SPEED_GTRL = 1;
-
+    public int n ;
     Random random = new Random();
 
     public PlayerGirl(int posX,int posY, int type) {
         super(posX,posY,type);
+        animationGirl = new AnimationGirl(2,31);
     }
 
     public void loadSpriteByType(int type) {
@@ -33,6 +37,16 @@ public class PlayerGirl extends Player {
                     e.printStackTrace();
                 }
                 break;
+        }
+    }
+
+    public void draw(Graphics g){
+
+        n = ManagerGirl.getInstance().getAnimationGirl();
+        if(n!=1)
+            g.drawImage(sprite,posX, posY,null);
+        for (int i = 0; i < listElephant.size(); i++){
+            listElephant.get(i).draw(g);
         }
     }
 

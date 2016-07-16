@@ -1,4 +1,4 @@
-package gameobject.Menu;
+package gameobject.Singleton;
 
 /**
  * Created by HP on 7/15/2016.

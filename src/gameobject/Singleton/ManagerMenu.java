@@ -1,4 +1,6 @@
-package gameobject.Menu;
+package gameobject.Singleton;
+
+import gameobject.Menu.Screen;
 
 import java.util.Stack;
 
