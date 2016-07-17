@@ -140,15 +140,24 @@ public class GamePlay extends Screen {
     }
 
     public void overGame(){
+        int o = ManagerTime.getInstance().getTime();
         int a = ManagerScore.getInstance().getScore1();
         int b = ManagerScore.getInstance().getScore2();
-        if (a == 1){
+        if (a == 50){
             ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
             ManagerScore.getInstance().setScore1(0);
         }
-        if (b == 1){
+        if(a > b && o == 0){
+            ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
+            ManagerScore.getInstance().setScore1(0);
+        }
+        if (b == 50){
             ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
             ManagerScore.getInstance().setScore2(0);
+        }
+        if(a < b && o == 0){
+            ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
+            ManagerScore.getInstance().setScore1(0);
         }
     }
 
