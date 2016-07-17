@@ -180,9 +180,11 @@ public class GameWindow extends Frame implements Runnable{
         }
 
     }
-
+    GameOver gameOver1 = new GameOver(1);
+    GameOver gameOver2 = new GameOver(2);
     @Override
     public void update(Graphics g) {
+
         if(buffImage == null) {
             buffImage = new BufferedImage(windowWidth, windowHeight, 1);
         }

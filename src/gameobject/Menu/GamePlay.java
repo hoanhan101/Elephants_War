@@ -142,8 +142,14 @@ public class GamePlay extends Screen {
     public void overGame(){
         int a = ManagerScore.getInstance().getScore1();
         int b = ManagerScore.getInstance().getScore2();
-        if (a == 1) ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
-        if (b == 1) ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
+        if (a == 1){
+            ManagerMenu.getInstance().getStackScreen().push(new GameOver(1));
+            ManagerScore.getInstance().setScore1(0);
+        }
+        if (b == 1){
+            ManagerMenu.getInstance().getStackScreen().push(new GameOver(2));
+            ManagerScore.getInstance().setScore2(0);
+        }
     }
 
     private void initPlayer() {
